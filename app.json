@@ -2,7 +2,15 @@
   "expo": {
     "name": "ugahacks-mobile",
     "slug": "ugahacks-mobile",
-    "plugins": ["@react-native-google-signin/google-signin"],
+    "plugins": [
+      "@react-native-google-signin/google-signin",
+      "expo-build-properties",
+      {
+        "ios": {
+          "useFrameworks": "static"
+        }
+      }
+    ],
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -17,6 +25,8 @@
     },
     "assetBundlePatterns": ["**/*"],
     "ios": {
+      "googleServicesFile": "./GoogleService-Info.plist",
+      "bundleIdentifier": "com.ugahacks.ugahacksmobile",
       "supportsTablet": true
     },
     "android": {
@@ -25,7 +35,8 @@
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
       },
-      "package": "com.genki135.ugahacksmobile"
+      "package": "com.genki135.ugahacksmobile",
+      "versionCode": 2
     },
     "web": {
       "favicon": "./assets/favicon.png"
