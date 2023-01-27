@@ -96,9 +96,11 @@ export const AuthContextProvider = ({
   const [scheduleFriday, setScheduleFriday] = useState([]);
   const [scheduleSaturday, setScheduleSaturday] = useState([]);
   const [scheduleSunday, setScheduleSunday] = useState([]);
+  const [scheduleCustom, setScheduleCustom] = useState([]);
   const [changedFriday, setChangedFriday] = useState(false);
   const [changedSaturday, setChangedSaturday] = useState(false);
   const [changedSunday, setChangedSunday] = useState(false);
+  const [changedCustom, setChangedCustom] = useState(false);
   const [changedQuestions, setChangedQuestions] = useState(false);
   const [questions, setQuestions] = useState({});
   const [clues, setClues] = useState({});
@@ -194,6 +196,22 @@ export const AuthContextProvider = ({
     return () => unsubscribe();
   }, [user]);
 
+  // Custom Schedule Change Listener
+  useEffect(() => {
+    if (!user.uid) {
+      return;
+    }
+
+    const unsubscribe = firestore()
+      .collection("schedules-users")
+      .doc(user.uid)
+      .onSnapshot(() => {
+        setChangedCustom(true);
+      });
+
+    return () => unsubscribe();
+  }, [user]);
+
   // Question Change Listener
   useEffect(() => {
     const unsubscribe = firestore()
@@ -243,6 +261,20 @@ export const AuthContextProvider = ({
     [first_name, last_name, ...rest] = full_name.split(" ");
 
     return [first_name, last_name];
+  }
+
+  async function createUserScheduleDoc(uid: string) {
+    const docSnap = await firestore()
+      .collection("schedules-users")
+      .doc(uid)
+      .get();
+
+    if (!docSnap.exists) {
+      await firestore()
+        .collection("schedules-users")
+        .doc(uid)
+        .set({ customSchedule: [] });
+    }
   }
 
   async function createScavengerHuntDocument(uid: string) {
@@ -299,7 +331,9 @@ export const AuthContextProvider = ({
         scavenger_hunt_group: scavenger_hunt_group,
         added_time: firestore.FieldValue.serverTimestamp(),
       });
+
       await createScavengerHuntDocument(user.uid);
+      await createUserScheduleDoc(user.uid);
 
       user.sendEmailVerification();
       auth().signOut();
@@ -328,6 +362,7 @@ export const AuthContextProvider = ({
     }
 
     await createScavengerHuntDocument(user.uid);
+    await createUserScheduleDoc(user.uid);
 
     setUserInformation(user.uid);
     setScavengerHuntInformation(user.uid);
@@ -391,6 +426,7 @@ export const AuthContextProvider = ({
 
       // Check if scavenger hunt users exist
       await createScavengerHuntDocument(google_user.uid);
+      await createUserScheduleDoc(google_user.uid);
 
       setUserInformation(google_user.uid);
       setScavengerHuntInformation(google_user.uid);
@@ -562,6 +598,15 @@ export const AuthContextProvider = ({
     setMainAnswers(main_answers);
   };
 
+  function parseDaytime(time: string) {
+    let [hours, minutes] = time
+      .substring(0, time.length - 3)
+      .split(":")
+      .map(Number);
+    if (time.includes("PM") && hours !== 12) hours += 12;
+    return 1000 /*ms*/ * 60 /*s*/ * (hours * 60 + minutes);
+  }
+
   const getSchedule = async function getSchedule(
     day: "friday" | "saturday" | "sunday"
   ) {
@@ -569,7 +614,22 @@ export const AuthContextProvider = ({
 
     switch (day) {
       case "friday":
-        setScheduleFriday(docSnap.data()?.fridaySchedule);
+        const fridaySchedule = docSnap.data()?.fridaySchedule;
+
+        const sortedFridaySchedule = fridaySchedule.sort(
+          (time1: { start: string }, time2: { start: string }) => {
+            console.log(new Date("1970/01/01 " + time1.start).valueOf());
+            console.log(time2.start);
+            return (
+              +new Date("1970/01/01") +
+              parseDaytime(time1.start) -
+              (+new Date("1970/01/01") + parseDaytime(time2.start))
+            );
+          }
+        );
+        console.log(fridaySchedule);
+        console.log(sortedFridaySchedule);
+        setScheduleFriday(fridaySchedule);
         return;
 
       case "saturday":

@@ -109,7 +109,7 @@ function ScheduleBuilder(props: {
           </View>
         </Modal>
         <ScrollView>
-          {props.schedule.map((events, index) => {
+          {props.schedule?.map((events, index) => {
             return (
               <View key={index}>
                 <View>
@@ -217,6 +217,9 @@ export default function ScheduleScreen() {
       <Tab.Screen name="Sunday">
         {(props) => <ScheduleBuilder schedule={scheduleSunday} {...props} />}
       </Tab.Screen>
+      {/* <Tab.Screen name="My Schedule">
+        {(props) => <ScheduleBuilder schedule={scheduleSunday} {...props} />}
+      </Tab.Screen> */}
     </Tab.Navigator>
   );
 }
