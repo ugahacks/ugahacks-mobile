@@ -44,6 +44,8 @@ function eventTagColor(tag: EventTag) {
       return "#7FFFD4"; // Aquamarine
     case EventTag.WORKSHOP:
       return "#FF0000"; // Red
+    case EventTag.TECH_TALK:
+      return "#cd5c5c"; // IndianRed
     default:
       return "white";
   }
