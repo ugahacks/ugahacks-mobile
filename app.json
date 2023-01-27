@@ -3,13 +3,15 @@
     "name": "ugahacks-mobile",
     "slug": "ugahacks-mobile",
     "plugins": [
-      "@react-native-google-signin/google-signin",
-      "expo-build-properties",
-      {
-        "ios": {
-          "useFrameworks": "static"
+      [
+        "@react-native-google-signin/google-signin",
+        "expo-build-properties",
+        {
+          "ios": {
+            "useFrameworks": "static"
+          }
         }
-      }
+      ]
     ],
     "version": "1.0.0",
     "orientation": "portrait",
