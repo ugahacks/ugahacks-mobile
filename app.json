@@ -30,7 +30,9 @@
     "ios": {
       "googleServicesFile": "./GoogleService-Info.plist",
       "bundleIdentifier": "com.ugahacks.ugahacksmobile",
-      "supportsTablet": true
+      "supportsTablet": true,
+      "buildNumber": "3",
+      "icon": "./assets/UH8AppIcon.png"
     },
     "android": {
       "googleServicesFile": "./google-services.json",

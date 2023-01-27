@@ -24,6 +24,11 @@
     }
   },
   "submit": {
-    "production": {}
+    "production": {
+      "ios": {
+        "companyName": "UGAHacks",
+        "appName": "UGAHacks Mobile"
+      }
+    }
   }
 }
