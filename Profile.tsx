@@ -7,20 +7,10 @@ import QRCode from "react-native-qrcode-svg";
 export const HelloUser: FC<{}> = ({}): ReactElement => {
   const { user, userInfo, getPoints, changedPoints, setChangedPoints, points } =
     useAuth();
-  // State variable that will hold username value
-  const [username, setUsername] = useState("");
-  const [loading, setLoading] = useState(false);
 
   const hacks8Logo = require("./assets/byte_mini.png");
 
-  // useEffect(() => {
-  //   console.log("Get points");
-  //   getPoints(user.uid);
-  // }, []);
-
   useEffect(() => {
-    console.log("Points changed");
-    console.log(changedPoints);
     if (changedPoints) {
       getPoints(user.uid);
       setChangedPoints(false);

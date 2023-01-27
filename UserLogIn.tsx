@@ -59,7 +59,6 @@ export const UserLogIn: FC<{}> = ({}): ReactElement => {
     try {
       await logInWithGoogle();
     } catch (error: any) {
-      console.log(error.code);
       alert(error);
     }
   };

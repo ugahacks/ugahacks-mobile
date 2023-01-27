@@ -14,16 +14,7 @@ import { RootStackParamList } from "./ScavengerHuntEnter";
 import Styles from "./Styles";
 
 export default function ScavengerHunt() {
-  interface ScavengerHuntClueType {
-    clue1: string;
-    clue2: string;
-    clue3: string;
-    clue4: string;
-    clue5: string;
-    clue6: string;
-  }
   const {
-    userInfo,
     scavengerHuntStatus,
     getScavengerHuntAnswers,
     getScavengerHuntQuestions,
@@ -41,7 +32,6 @@ export default function ScavengerHunt() {
   // Listen for changes in questions
   useEffect(() => {
     if (changedQuestions) {
-      console.log("changed questions");
       getScavengerHuntQuestions();
       setChangedQuestions(false);
     }
@@ -62,7 +52,7 @@ export default function ScavengerHunt() {
       case 1:
         return {
           clueAnswered: scavengerHuntStatus.clue1,
-          clueQuestion: clues.clue1, // TODO
+          clueQuestion: clues.clue1,
           clueAnswer: clueAnswers.clue1_answer,
           question: questions.question1,
           answer: mainAnswers.question1_answer,
