@@ -4,7 +4,7 @@ import { Text, View } from "react-native";
 import { useAuth } from "./context/AuthContext";
 import QRCode from "react-native-qrcode-svg";
 
-export const HelloUser: FC<{}> = ({}): ReactElement => {
+export const Profile: FC<{}> = ({}): ReactElement => {
   const { user, userInfo, getPoints, changedPoints, setChangedPoints, points } =
     useAuth();
 

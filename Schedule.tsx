@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   View,
   Text,
@@ -15,6 +15,7 @@ import { Card } from "react-native-shadow-cards";
 import Styles from "./Styles";
 import { EventTag } from "./enums/EventTag";
 import { useAuth } from "./context/AuthContext";
+import { fridaySchedule } from "./hacks8FridaySchedule";
 
 export interface Event {
   name: string;

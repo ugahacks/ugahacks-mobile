@@ -477,7 +477,6 @@ export const AuthContextProvider = ({
       .doc(uid)
       .update({
         [clue_answered]: true,
-        test: true,
       });
 
     setScavengerHuntInformation(uid);

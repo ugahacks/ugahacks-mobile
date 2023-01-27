@@ -8,11 +8,13 @@ import "react-native-gesture-handler";
 import React, { useEffect, useState } from "react";
 import {
   Image,
+  Linking,
   SafeAreaView,
   StatusBar,
   Text,
   View,
   ScrollView,
+  TouchableOpacity,
 } from "react-native";
 import Icon from "react-native-vector-icons/FontAwesome";
 import { NavigationContainer } from "@react-navigation/native";
@@ -21,7 +23,7 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { UserRegistration } from "./UserRegistration";
 import { UserLogIn } from "./UserLogIn";
 import { UserLogOut } from "./UserLogOut";
-import { HelloUser } from "./Profile";
+import { Profile } from "./Profile";
 import Styles from "./Styles";
 import { AuthContextProvider } from "./context/AuthContext";
 import { GoogleSignin } from "@react-native-google-signin/google-signin";
@@ -29,6 +31,9 @@ import auth, { FirebaseAuthTypes } from "@react-native-firebase/auth";
 import FlashMessage from "react-native-flash-message";
 import Schedule from "./Schedule";
 import ScavengerHuntEnter from "./ScavengerHuntEnter";
+import ClueQuestion from "./ClueQuestion";
+import MainQuestion from "./MainQuestion";
+import ScavengerHunt from "./ScavengerHunt";
 
 function UserRegistrationScreen() {
   return (
@@ -117,7 +122,7 @@ function HomeScreen() {
           >
             Create your own adventure!
           </Text>
-          <HelloUser />
+          <Profile />
           <UserLogOut />
         </ScrollView>
       </SafeAreaView>
@@ -137,6 +142,24 @@ const App = () => {
   const Tab = createBottomTabNavigator();
   const [loading, setLoading] = useState(true);
   const [user, setUser] = useState<FirebaseAuthTypes.User | null>(null);
+
+  type RootStackParamList = {
+    Scavenger_Hunt: undefined;
+    Clue: {
+      clue: string;
+      clueAnswer: string;
+      nextQuestion: string;
+      nextAnswer: string;
+      clue_num: number;
+    };
+    Question: {
+      question: string;
+      answer: string;
+      question_num: number;
+    };
+  };
+
+  const RootStack = createStackNavigator<RootStackParamList>();
 
   useEffect(() => {
     auth().onAuthStateChanged((userState) => {

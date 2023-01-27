@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   SafeAreaView,
   ScrollView,
@@ -13,6 +13,11 @@ import { RootStackParamList } from "./ScavengerHuntEnter";
 import { StackScreenProps } from "@react-navigation/stack";
 import { showMessage } from "react-native-flash-message";
 import { useAuth } from "./context/AuthContext";
+import {
+  CommonActions,
+  NavigationHelpersContext,
+  useIsFocused,
+} from "@react-navigation/native";
 
 type Props = StackScreenProps<RootStackParamList, "Clue">;
 
@@ -33,7 +38,7 @@ export default function ClueQuestion({ route, navigation }: Props) {
       // Update db
       const clue_field: string = "clue" + clue_num;
       await updateClueScavengerHuntStatus(clue_field, userInfo.uid);
-
+      setUserInput("");
       navigation.navigate("Question", {
         question: nextQuestion,
         answer: nextAnswer,
@@ -77,11 +82,23 @@ export default function ClueQuestion({ route, navigation }: Props) {
             onChangeText={(text) => setUserInput(text)}
           />
           <TouchableOpacity
-            style={{ marginLeft: 20, marginRight: 20 }}
+            style={{ marginLeft: 20, marginRight: 20, marginBottom: 20 }}
             onPress={onPress}
           >
             <View style={Styles.button}>
               <Text style={Styles.button_label}>{"Submit"}</Text>
+            </View>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={{ marginLeft: 20, marginRight: 20 }}
+            onPress={() => {
+              navigation.navigate("Scavenger_Hunt");
+            }}
+          >
+            <View style={Styles.button}>
+              <Text style={Styles.button_label}>
+                {"Return to Scavenger Hunt Home"}
+              </Text>
             </View>
           </TouchableOpacity>
         </ScrollView>

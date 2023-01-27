@@ -78,11 +78,21 @@ export default function MainQuestion({ route, navigation }: Props) {
             onChangeText={(text) => setUserInput(text)}
           />
           <TouchableOpacity
-            style={{ marginLeft: 20, marginRight: 20 }}
+            style={{ marginLeft: 20, marginRight: 20, marginBottom: 20 }}
             onPress={onPress}
           >
             <View style={Styles.button}>
               <Text style={Styles.button_label}>{"Submit"}</Text>
+            </View>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={{ marginLeft: 20, marginRight: 20 }}
+            onPress={() => navigation.navigate("Scavenger_Hunt")}
+          >
+            <View style={Styles.button}>
+              <Text style={Styles.button_label}>
+                {"Return to Scavenger Hunt Home"}
+              </Text>
             </View>
           </TouchableOpacity>
         </ScrollView>
