@@ -15,7 +15,6 @@ import { Card } from "react-native-shadow-cards";
 import Styles from "./Styles";
 import { EventTag } from "./enums/EventTag";
 import { useAuth } from "./context/AuthContext";
-import { fridaySchedule } from "./hacks8FridaySchedule";
 
 export interface Event {
   name: string;
@@ -217,9 +216,6 @@ export default function ScheduleScreen() {
       <Tab.Screen name="Sunday">
         {(props) => <ScheduleBuilder schedule={scheduleSunday} {...props} />}
       </Tab.Screen>
-      {/* <Tab.Screen name="My Schedule">
-        {(props) => <ScheduleBuilder schedule={scheduleSunday} {...props} />}
-      </Tab.Screen> */}
     </Tab.Navigator>
   );
 }

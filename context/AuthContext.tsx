@@ -96,11 +96,9 @@ export const AuthContextProvider = ({
   const [scheduleFriday, setScheduleFriday] = useState([]);
   const [scheduleSaturday, setScheduleSaturday] = useState([]);
   const [scheduleSunday, setScheduleSunday] = useState([]);
-  const [scheduleCustom, setScheduleCustom] = useState([]);
   const [changedFriday, setChangedFriday] = useState(false);
   const [changedSaturday, setChangedSaturday] = useState(false);
   const [changedSunday, setChangedSunday] = useState(false);
-  const [changedCustom, setChangedCustom] = useState(false);
   const [changedQuestions, setChangedQuestions] = useState(false);
   const [questions, setQuestions] = useState({});
   const [clues, setClues] = useState({});
@@ -196,22 +194,6 @@ export const AuthContextProvider = ({
     return () => unsubscribe();
   }, [user]);
 
-  // Custom Schedule Change Listener
-  useEffect(() => {
-    if (!user.uid) {
-      return;
-    }
-
-    const unsubscribe = firestore()
-      .collection("schedules-users")
-      .doc(user.uid)
-      .onSnapshot(() => {
-        setChangedCustom(true);
-      });
-
-    return () => unsubscribe();
-  }, [user]);
-
   // Question Change Listener
   useEffect(() => {
     const unsubscribe = firestore()
@@ -261,20 +243,6 @@ export const AuthContextProvider = ({
     [first_name, last_name, ...rest] = full_name.split(" ");
 
     return [first_name, last_name];
-  }
-
-  async function createUserScheduleDoc(uid: string) {
-    const docSnap = await firestore()
-      .collection("schedules-users")
-      .doc(uid)
-      .get();
-
-    if (!docSnap.exists) {
-      await firestore()
-        .collection("schedules-users")
-        .doc(uid)
-        .set({ customSchedule: [] });
-    }
   }
 
   async function createScavengerHuntDocument(uid: string) {
@@ -333,7 +301,6 @@ export const AuthContextProvider = ({
       });
 
       await createScavengerHuntDocument(user.uid);
-      await createUserScheduleDoc(user.uid);
 
       user.sendEmailVerification();
       auth().signOut();
@@ -362,7 +329,6 @@ export const AuthContextProvider = ({
     }
 
     await createScavengerHuntDocument(user.uid);
-    await createUserScheduleDoc(user.uid);
 
     setUserInformation(user.uid);
     setScavengerHuntInformation(user.uid);
@@ -426,12 +392,11 @@ export const AuthContextProvider = ({
 
       // Check if scavenger hunt users exist
       await createScavengerHuntDocument(google_user.uid);
-      await createUserScheduleDoc(google_user.uid);
 
       setUserInformation(google_user.uid);
       setScavengerHuntInformation(google_user.uid);
     } catch (err: any) {
-      console.error(err);
+      console.log(err);
     }
   };
 
@@ -616,10 +581,8 @@ export const AuthContextProvider = ({
       case "friday":
         const fridaySchedule = docSnap.data()?.fridaySchedule;
 
-        const sortedFridaySchedule = fridaySchedule.sort(
+        const sortedFridaySchedule = fridaySchedule?.sort(
           (time1: { start: string }, time2: { start: string }) => {
-            console.log(new Date("1970/01/01 " + time1.start).valueOf());
-            console.log(time2.start);
             return (
               +new Date("1970/01/01") +
               parseDaytime(time1.start) -
@@ -627,17 +590,47 @@ export const AuthContextProvider = ({
             );
           }
         );
-        console.log(fridaySchedule);
-        console.log(sortedFridaySchedule);
-        setScheduleFriday(fridaySchedule);
+
+        if (!sortedFridaySchedule) {
+          setScheduleFriday([]);
+        }
+        setScheduleFriday(sortedFridaySchedule);
         return;
 
       case "saturday":
-        setScheduleSaturday(docSnap.data()?.saturdaySchedule);
+        const saturdaySchedule = docSnap.data()?.saturdaySchedule;
+
+        const sortedSaturdaySchedule = saturdaySchedule?.sort(
+          (time1: { start: string }, time2: { start: string }) => {
+            return (
+              +new Date("1970/01/01") +
+              parseDaytime(time1.start) -
+              (+new Date("1970/01/01") + parseDaytime(time2.start))
+            );
+          }
+        );
+        if (!sortedSaturdaySchedule) {
+          setScheduleSaturday([]);
+        }
+        setScheduleSaturday(sortedSaturdaySchedule);
         return;
 
       case "sunday":
-        setScheduleSunday(docSnap.data()?.sundaySchedule);
+        const sundaySchedule = docSnap.data()?.sundaySchedule;
+
+        const sortedSundaySchedule = sundaySchedule?.sort(
+          (time1: { start: string }, time2: { start: string }) => {
+            return (
+              +new Date("1970/01/01") +
+              parseDaytime(time1.start) -
+              (+new Date("1970/01/01") + parseDaytime(time2.start))
+            );
+          }
+        );
+        if (!sortedSundaySchedule) {
+          setScheduleSunday([]);
+        }
+        setScheduleSunday(sortedSundaySchedule);
         return;
 
       default:
