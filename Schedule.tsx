@@ -15,7 +15,6 @@ import { Card } from "react-native-shadow-cards";
 import Styles from "./Styles";
 import { EventTag } from "./enums/EventTag";
 import { useAuth } from "./context/AuthContext";
-import { useIsFocused } from "@react-navigation/native";
 
 export interface Event {
   name: string;
