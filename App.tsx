@@ -5,16 +5,15 @@
  * @format
  */
 import "react-native-gesture-handler";
+import "./config/firebase";
 import React, { useEffect, useState } from "react";
 import {
   Image,
-  Linking,
   SafeAreaView,
   StatusBar,
   Text,
   View,
   ScrollView,
-  TouchableOpacity,
 } from "react-native";
 import Icon from "react-native-vector-icons/FontAwesome";
 import { NavigationContainer } from "@react-navigation/native";
@@ -31,9 +30,6 @@ import auth, { FirebaseAuthTypes } from "@react-native-firebase/auth";
 import FlashMessage from "react-native-flash-message";
 import Schedule from "./Schedule";
 import ScavengerHuntEnter from "./ScavengerHuntEnter";
-import ClueQuestion from "./ClueQuestion";
-import MainQuestion from "./MainQuestion";
-import ScavengerHunt from "./ScavengerHunt";
 
 function UserRegistrationScreen() {
   return (
