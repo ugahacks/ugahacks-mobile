@@ -152,7 +152,6 @@ export const AuthContextProvider = ({
       .collection("users")
       .doc(user.uid)
       .onSnapshot(() => {
-        console.log("Points trigger listener");
         setChangedPoints(true);
       });
 
@@ -621,7 +620,6 @@ export const AuthContextProvider = ({
     if (!uid) {
       return -1;
     }
-    console.log("function call get points");
     const docSnap = await firestore()
       .collection("users")
       .doc(uid ? uid : "")
@@ -630,7 +628,6 @@ export const AuthContextProvider = ({
     if (!docSnap.exists) {
       return null;
     }
-    console.log(docSnap.data());
     setPoints(docSnap.data()?.points);
   };
 
