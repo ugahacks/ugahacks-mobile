@@ -3,8 +3,8 @@
     "name": "ugahacks-mobile",
     "slug": "ugahacks-mobile",
     "plugins": [
+      "@react-native-google-signin/google-signin",
       [
-        "@react-native-google-signin/google-signin",
         "expo-build-properties",
         {
           "ios": {
