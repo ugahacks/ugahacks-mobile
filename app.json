@@ -26,22 +26,24 @@
     "updates": {
       "fallbackToCacheTimeout": 0
     },
-    "assetBundlePatterns": ["**/*"],
+    "assetBundlePatterns": [
+      "**/*"
+    ],
     "ios": {
       "googleServicesFile": "./GoogleService-Info.plist",
       "bundleIdentifier": "com.ugahacks.ugahacksmobile",
       "supportsTablet": true,
-      "buildNumber": "3",
+      "buildNumber": "4",
       "icon": "./assets/UH8AppIcon.png"
     },
     "android": {
       "googleServicesFile": "./google-services.json",
       "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
+        "foregroundImage": "./assets/UH8AppIcon.png",
         "backgroundColor": "#FFFFFF"
       },
       "package": "com.genki135.ugahacksmobile",
-      "versionCode": 2
+      "versionCode": 3
     },
     "web": {
       "favicon": "./assets/favicon.png"
