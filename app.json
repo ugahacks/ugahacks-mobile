@@ -26,15 +26,16 @@
     "updates": {
       "fallbackToCacheTimeout": 0
     },
-    "assetBundlePatterns": [
-      "**/*"
-    ],
+    "assetBundlePatterns": ["**/*"],
     "ios": {
       "googleServicesFile": "./GoogleService-Info.plist",
       "bundleIdentifier": "com.ugahacks.ugahacksmobile",
       "supportsTablet": true,
       "buildNumber": "4",
-      "icon": "./assets/UH8AppIcon.png"
+      "icon": "./assets/UH8AppIcon.png",
+      "entitlements": {
+        "com.apple.developer.applesignin": ["Default"]
+      }
     },
     "android": {
       "googleServicesFile": "./google-services.json",
