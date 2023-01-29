@@ -2,6 +2,10 @@ import React, { createContext, useContext, useEffect, useState } from "react";
 import auth from "@react-native-firebase/auth";
 import firestore from "@react-native-firebase/firestore";
 import { GoogleSignin } from "@react-native-google-signin/google-signin";
+import {
+  appleAuth,
+  AppleRequestResponseFullName,
+} from "@invertase/react-native-apple-authentication";
 
 export interface UserType {
   email: string | null;
@@ -122,6 +126,17 @@ export const AuthContextProvider = ({
   //   setUser(user);
   // }
 
+  // Change this variable for prod or dev
+  const isStage = true;
+
+  let userDoc = "users";
+  let scavengerHuntUsersDoc = "scavenger-hunt-users";
+
+  if (isStage) {
+    userDoc = "users-stage";
+    scavengerHuntUsersDoc = "scavenger-hunt-users-stage";
+  }
+
   useEffect(() => {
     const unsubscribe = auth().onAuthStateChanged((curr_user) => {
       if (curr_user) {
@@ -149,7 +164,7 @@ export const AuthContextProvider = ({
     }
 
     const unsubscribe = firestore()
-      .collection("users")
+      .collection(userDoc)
       .doc(user.uid)
       .onSnapshot(() => {
         setChangedPoints(true);
@@ -248,13 +263,13 @@ export const AuthContextProvider = ({
   async function createScavengerHuntDocument(uid: string) {
     // Check if scavenger hunt users exist
     const docSnapScavengerHunt = await firestore()
-      .collection("scavenger-hunt-users")
+      .collection(scavengerHuntUsersDoc)
       .doc(uid)
       .get();
 
     // Create new document for scavenger hunt if it does not exist
     if (!docSnapScavengerHunt.exists) {
-      await firestore().collection("scavenger-hunt-users").doc(uid).set({
+      await firestore().collection(scavengerHuntUsersDoc).doc(uid).set({
         uid: uid,
         question1: false,
         question2: false,
@@ -287,7 +302,7 @@ export const AuthContextProvider = ({
       const name = first_name + " " + last_name;
       const scavenger_hunt_group = generateScavengerHuntGroup();
 
-      await firestore().collection("users").doc(user.uid).set({
+      await firestore().collection(userDoc).doc(user.uid).set({
         uid: user.uid,
         first_name: first_name,
         last_name: last_name,
@@ -312,7 +327,7 @@ export const AuthContextProvider = ({
   const logIn = async (email: string, password: string) => {
     const res = await auth().signInWithEmailAndPassword(email, password);
     const user = res.user;
-    const docSnap = await firestore().collection("users").doc(user.uid).get();
+    const docSnap = await firestore().collection(userDoc).doc(user.uid).get();
     const scavenger_hunt_group = generateScavengerHuntGroup();
 
     if (!user.emailVerified) {
@@ -323,7 +338,7 @@ export const AuthContextProvider = ({
     }
 
     if (docSnap.data()?.scavenger_hunt_group == null) {
-      await firestore().collection("users").doc(user.uid).update({
+      await firestore().collection(userDoc).doc(user.uid).update({
         scavenger_hunt_group: scavenger_hunt_group,
       });
     }
@@ -358,7 +373,7 @@ export const AuthContextProvider = ({
       const google_user = res.user;
 
       const docSnap = await firestore()
-        .collection("users")
+        .collection(userDoc)
         .doc(google_user.uid)
         .get();
 
@@ -369,7 +384,7 @@ export const AuthContextProvider = ({
       const scavenger_hunt_group = generateScavengerHuntGroup();
 
       if (!docSnap.exists) {
-        await firestore().collection("users").doc(google_user.uid).set({
+        await firestore().collection(userDoc).doc(google_user.uid).set({
           uid: google_user.uid,
           first_name: first_name,
           last_name: last_name,
@@ -384,7 +399,7 @@ export const AuthContextProvider = ({
       } else {
         // Check if scavenger hunt group exists because it was added later
         if (docSnap.data()?.scavenger_hunt_group == null) {
-          await firestore().collection("users").doc(google_user.uid).update({
+          await firestore().collection(userDoc).doc(google_user.uid).update({
             scavenger_hunt_group: scavenger_hunt_group,
           });
         }
@@ -400,6 +415,90 @@ export const AuthContextProvider = ({
     }
   };
 
+  const logInWithApple = async () => {
+    try {
+      // Start apple sign in request
+      const appleAuthRequestResponse = await appleAuth.performRequest({
+        requestedOperation: appleAuth.Operation.LOGIN,
+        requestedScopes: [appleAuth.Scope.EMAIL, appleAuth.Scope.FULL_NAME],
+      });
+
+      console.log("Request success");
+
+      // If request was successful, extract token
+      const { identityToken, nonce } = appleAuthRequestResponse;
+
+      // Get email and name
+      // Only get on first login, subsequent logins will return null so first login must be saved
+      const email = appleAuthRequestResponse.email;
+      const full_name: AppleRequestResponseFullName | null =
+        appleAuthRequestResponse.fullName;
+      const first_name = full_name?.givenName;
+      const last_name = full_name?.familyName;
+
+      console.log(full_name);
+
+      // can be null
+      if (identityToken) {
+        // create a Firebase "AppleAuthProvider" credential
+        const appleCredential = auth.AppleAuthProvider.credential(
+          identityToken,
+          nonce
+        );
+
+        // Start a Firebase auth request
+        const userCredential = await auth().signInWithCredential(
+          appleCredential
+        );
+
+        // User is signed in, trigger the onAuthStateChanged useEffect
+        const apple_user = userCredential.user;
+
+        console.log(apple_user);
+
+        const docSnap = await firestore()
+          .collection(userDoc)
+          .doc(apple_user.uid)
+          .get();
+
+        const scavenger_hunt_group = generateScavengerHuntGroup();
+
+        if (!docSnap.exists) {
+          await firestore()
+            .collection(userDoc)
+            .doc(apple_user.uid)
+            .set({
+              uid: apple_user.uid,
+              first_name: first_name,
+              last_name: last_name,
+              name: first_name + " " + last_name,
+              authProvider: "apple",
+              email: email,
+              points: 0,
+              registered: {},
+              scavenger_hunt_group: scavenger_hunt_group,
+              added_time: firestore.FieldValue.serverTimestamp(),
+            });
+        } else {
+          // Check if scavenger hunt group exists because it was added later
+          if (docSnap.data()?.scavenger_hunt_group == null) {
+            await firestore().collection(userDoc).doc(apple_user.uid).update({
+              scavenger_hunt_group: scavenger_hunt_group,
+            });
+          }
+        }
+
+        // Check if scavenger hunt users exist
+        await createScavengerHuntDocument(apple_user.uid);
+
+        setUserInformation(apple_user.uid);
+        setScavengerHuntInformation(apple_user.uid);
+      }
+    } catch (error: any) {
+      console.log(error);
+    }
+  };
+
   const updateQuestionScavengerHuntStatus = async (
     question_answered: string,
     uid: string,
@@ -408,7 +507,7 @@ export const AuthContextProvider = ({
   ) => {
     if (num_questions_answered === 6) {
       await firestore()
-        .collection("scavenger-hunt-users")
+        .collection(scavengerHuntUsersDoc)
         .doc(uid)
         .update({
           [question_answered]: true,
@@ -418,14 +517,14 @@ export const AuthContextProvider = ({
 
       // Update user points
       await firestore()
-        .collection("users")
+        .collection(userDoc)
         .doc(uid)
         .update({
           points: 1000 + curr_points,
         });
     } else {
       await firestore()
-        .collection("scavenger-hunt-users")
+        .collection(scavengerHuntUsersDoc)
         .doc(uid)
         .update({
           [question_answered]: true,
@@ -474,7 +573,7 @@ export const AuthContextProvider = ({
     uid: string
   ) => {
     await firestore()
-      .collection("scavenger-hunt-users")
+      .collection(scavengerHuntUsersDoc)
       .doc(uid)
       .update({
         [clue_answered]: true,
@@ -485,7 +584,7 @@ export const AuthContextProvider = ({
 
   const setUserInformation = async (uid: string | null) => {
     const docSnap = await firestore()
-      .collection("users")
+      .collection(userDoc)
       .doc(uid ? uid : "")
       .get();
 
@@ -506,7 +605,7 @@ export const AuthContextProvider = ({
 
   const setScavengerHuntInformation = async (uid: string) => {
     const docSnap = await firestore()
-      .collection("scavenger-hunt-users")
+      .collection(scavengerHuntUsersDoc)
       .doc(uid)
       .get();
 
@@ -673,7 +772,7 @@ export const AuthContextProvider = ({
       return -1;
     }
     const docSnap = await firestore()
-      .collection("users")
+      .collection(userDoc)
       .doc(uid ? uid : "")
       .get();
 
@@ -700,6 +799,7 @@ export const AuthContextProvider = ({
         logIn,
         resetPassword,
         logInWithGoogle,
+        logInWithApple,
         logOut,
         validUser,
         setUserInformation,
