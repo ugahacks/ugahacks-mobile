@@ -166,11 +166,20 @@ const Styles = StyleSheet.create({
     padding: 10,
     elevation: 2,
   },
+  modal_button_custom: {
+    borderRadius: 20,
+    padding: 10,
+    elevation: 2,
+    marginTop: 15,
+  },
   modal_buttonOpen: {
     backgroundColor: "#F194FF",
   },
   modal_buttonClose: {
     backgroundColor: "#DC4141",
+  },
+  modal_buttonClose_custom: {
+    backgroundColor: "#EDF0F7",
   },
   modal_textStyle: {
     color: "black",

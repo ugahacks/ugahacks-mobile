@@ -100,9 +100,15 @@ export const AuthContextProvider = ({
   const [scheduleFriday, setScheduleFriday] = useState([]);
   const [scheduleSaturday, setScheduleSaturday] = useState([]);
   const [scheduleSunday, setScheduleSunday] = useState([]);
+  const [myScheduleFriday, setMyScheduleFriday] = useState({});
+  const [myScheduleSaturday, setMyScheduleSaturday] = useState({});
+  const [myScheduleSunday, setMyScheduleSunday] = useState({});
   const [changedFriday, setChangedFriday] = useState(false);
   const [changedSaturday, setChangedSaturday] = useState(false);
   const [changedSunday, setChangedSunday] = useState(false);
+  const [changedCustomFriday, setChangedCustomFriday] = useState(false);
+  const [changedCustomSaturday, setChangedCustomSaturday] = useState(false);
+  const [changedCustomSunday, setChangedCustomSunday] = useState(false);
   const [changedQuestions, setChangedQuestions] = useState(false);
   const [questions, setQuestions] = useState({});
   const [clues, setClues] = useState({});
@@ -131,10 +137,12 @@ export const AuthContextProvider = ({
 
   let userDoc = "users";
   let scavengerHuntUsersDoc = "scavenger-hunt-users";
+  let userSchedulesDoc = "schedules-users";
 
   if (isStage) {
     userDoc = "users-stage";
     scavengerHuntUsersDoc = "scavenger-hunt-users-stage";
+    userSchedulesDoc = "schedules-users-stage";
   }
 
   useEffect(() => {
@@ -204,6 +212,48 @@ export const AuthContextProvider = ({
       .doc("sunday")
       .onSnapshot(() => {
         setChangedSunday(true);
+      });
+
+    return () => unsubscribe();
+  }, [user]);
+
+  // Custom Schedule Change Listener
+  useEffect(() => {
+    const unsubscribe = firestore()
+      .collection(userSchedulesDoc)
+      .doc(user.uid ? user.uid : "")
+      .collection("schedule")
+      .doc("friday")
+      .onSnapshot(() => {
+        setChangedCustomFriday(true);
+      });
+
+    return () => unsubscribe();
+  }, [user]);
+
+  // Custom Schedule Change Listener
+  useEffect(() => {
+    const unsubscribe = firestore()
+      .collection(userSchedulesDoc)
+      .doc(user.uid ? user.uid : "")
+      .collection("schedule")
+      .doc("saturday")
+      .onSnapshot(() => {
+        setChangedCustomSaturday(true);
+      });
+
+    return () => unsubscribe();
+  }, [user]);
+
+  // Custom Schedule Change Listener
+  useEffect(() => {
+    const unsubscribe = firestore()
+      .collection(userSchedulesDoc)
+      .doc(user.uid ? user.uid : "")
+      .collection("schedule")
+      .doc("sunday")
+      .onSnapshot(() => {
+        setChangedCustomSunday(true);
       });
 
     return () => unsubscribe();
@@ -423,8 +473,6 @@ export const AuthContextProvider = ({
         requestedScopes: [appleAuth.Scope.EMAIL, appleAuth.Scope.FULL_NAME],
       });
 
-      console.log("Request success");
-
       // If request was successful, extract token
       const { identityToken, nonce } = appleAuthRequestResponse;
 
@@ -435,8 +483,6 @@ export const AuthContextProvider = ({
         appleAuthRequestResponse.fullName;
       const first_name = full_name?.givenName;
       const last_name = full_name?.familyName;
-
-      console.log(full_name);
 
       // can be null
       if (identityToken) {
@@ -453,8 +499,6 @@ export const AuthContextProvider = ({
 
         // User is signed in, trigger the onAuthStateChanged useEffect
         const apple_user = userCredential.user;
-
-        console.log(apple_user);
 
         const docSnap = await firestore()
           .collection(userDoc)
@@ -671,6 +715,125 @@ export const AuthContextProvider = ({
     return 1000 /*ms*/ * 60 /*s*/ * (hours * 60 + minutes);
   }
 
+  const addToCustomSchedule = async (
+    name: string,
+    startTime: string,
+    day: "friday" | "saturday" | "sunday"
+  ) => {
+    // add this name to the schedules-users/{uid}/day
+    await firestore()
+      .collection(userSchedulesDoc)
+      .doc(user.uid ? user.uid : "")
+      .collection("schedule")
+      .doc(day)
+      .set(
+        {
+          [startTime]: {
+            [name]: true,
+          },
+        },
+        { merge: true }
+      );
+  };
+
+  const removeFromCustomSchedule = async (
+    name: string,
+    startTime: string,
+    day: "friday" | "saturday" | "sunday"
+  ) => {
+    // add this name to the schedules-users/{uid}/day
+    await firestore()
+      .collection(userSchedulesDoc)
+      .doc(user.uid ? user.uid : "")
+      .collection("schedule")
+      .doc(day)
+      .set(
+        {
+          [startTime]: {
+            [name]: firestore.FieldValue.delete(),
+          },
+        },
+        { merge: true }
+      );
+    removeEmptyField(startTime, day);
+  };
+
+  const removeEmptyField = async (
+    startTime: string,
+    day: "friday" | "saturday" | "sunday"
+  ) => {
+    const docSnap = await firestore()
+      .collection(userSchedulesDoc)
+      .doc(user.uid ? user.uid : "")
+      .collection("schedule")
+      .doc(day)
+      .get();
+
+    const mySchedule = docSnap.data();
+
+    for (let time in mySchedule) {
+      if (Object.keys(mySchedule[time]).length === 0) {
+        await firestore()
+          .collection(userSchedulesDoc)
+          .doc(user.uid ? user.uid : "")
+          .collection("schedule")
+          .doc(day)
+          .set(
+            {
+              [startTime]: firestore.FieldValue.delete(),
+            },
+            { merge: true }
+          );
+      }
+    }
+  };
+
+  const getCustomSchedule = async function getCustomSchedule(
+    day: "friday" | "saturday" | "sunday"
+  ) {
+    const docSnap = await firestore()
+      .collection(userSchedulesDoc)
+      .doc(user.uid ? user.uid : "")
+      .collection("schedule")
+      .doc(day)
+      .get();
+
+    switch (day) {
+      case "friday":
+        const myFriday = docSnap.data();
+
+        if (!myFriday) {
+          setMyScheduleFriday({});
+          return;
+        }
+
+        setMyScheduleFriday(myFriday);
+        return;
+      case "saturday":
+        const mySaturday = docSnap.data();
+
+        if (!mySaturday) {
+          setMyScheduleSaturday({});
+          return;
+        }
+
+        setMyScheduleSaturday(mySaturday);
+        return;
+      case "sunday":
+        const mySunday = docSnap.data();
+
+        if (!mySunday) {
+          setMyScheduleSunday({});
+          return;
+        }
+
+        setMyScheduleSunday(mySunday);
+        return;
+      default:
+        return;
+    }
+  };
+
   const getSchedule = async function getSchedule(
     day: "friday" | "saturday" | "sunday"
   ) {
@@ -692,6 +855,7 @@ export const AuthContextProvider = ({
 
         if (!sortedFridaySchedule) {
           setScheduleFriday([]);
+          return;
         }
         setScheduleFriday(sortedFridaySchedule);
         return;
@@ -710,6 +874,7 @@ export const AuthContextProvider = ({
         );
         if (!sortedSaturdaySchedule) {
           setScheduleSaturday([]);
+          return;
         }
         setScheduleSaturday(sortedSaturdaySchedule);
         return;
@@ -728,6 +893,7 @@ export const AuthContextProvider = ({
         );
         if (!sortedSundaySchedule) {
           setScheduleSunday([]);
+          return;
         }
         setScheduleSunday(sortedSundaySchedule);
         return;
@@ -808,8 +974,14 @@ export const AuthContextProvider = ({
         updateQuestionScavengerHuntStatus,
         updateClueScavengerHuntStatus,
         scheduleFriday,
+        myScheduleFriday,
         scheduleSaturday,
+        myScheduleSaturday,
         scheduleSunday,
+        myScheduleSunday,
+        setMyScheduleFriday,
+        setMyScheduleSaturday,
+        setMyScheduleSunday,
         getSchedule,
         changedFriday,
         setChangedFriday,
@@ -817,6 +989,12 @@ export const AuthContextProvider = ({
         setChangedSaturday,
         changedSunday,
         setChangedSunday,
+        changedCustomFriday,
+        setChangedCustomFriday,
+        changedCustomSaturday,
+        setChangedCustomSaturday,
+        changedCustomSunday,
+        setChangedCustomSunday,
         changedPoints,
         setChangedPoints,
         points,
@@ -829,6 +1007,9 @@ export const AuthContextProvider = ({
         setChangedAnswers,
         clueAnswers,
         mainAnswers,
+        addToCustomSchedule,
+        removeFromCustomSchedule,
+        getCustomSchedule,
       }}
     >
       {loading ? null : children}

@@ -28,8 +28,9 @@ import { AuthContextProvider } from "./context/AuthContext";
 import { GoogleSignin } from "@react-native-google-signin/google-signin";
 import auth, { FirebaseAuthTypes } from "@react-native-firebase/auth";
 import FlashMessage from "react-native-flash-message";
-import Schedule from "./Schedule";
+import ScheduleScreen from "./Schedule";
 import ScavengerHuntEnter from "./ScavengerHuntEnter";
+import MyScheduleScreen from "./MySchedule";
 
 function UserRegistrationScreen() {
   return (
@@ -238,14 +239,30 @@ const App = () => {
                 />
                 <Tab.Screen
                   name="Schedule"
-                  component={Schedule}
                   options={{
                     headerTitle: () => <LogoTitle />,
                     tabBarIcon: ({}) => {
                       return <Icon name="calendar" size={25} color="white" />;
                     },
                   }}
-                />
+                >
+                  {(props) => (
+                    <ScheduleScreen isFavoriteSchedule={false} {...props} />
+                  )}
+                </Tab.Screen>
+                <Tab.Screen
+                  name="My Schedule"
+                  options={{
+                    headerTitle: () => <LogoTitle />,
+                    tabBarIcon: ({}) => {
+                      return <Icon name="star" size={25} color="white" />;
+                    },
+                  }}
+                >
+                  {(props) => (
+                    <ScheduleScreen isFavoriteSchedule={true} {...props} />
+                  )}
+                </Tab.Screen>
                 <Tab.Screen
                   name="Scavenger Hunt"
                   component={ScavengerHuntEnter}
