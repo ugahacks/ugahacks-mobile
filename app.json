@@ -33,7 +33,7 @@
       "googleServicesFile": "./GoogleService-Info.plist",
       "bundleIdentifier": "com.ugahacks.ugahacksmobile",
       "supportsTablet": true,
-      "buildNumber": "6",
+      "buildNumber": "7",
       "icon": "./assets/UH8AppIcon.png",
       "entitlements": {
         "com.apple.developer.applesignin": [

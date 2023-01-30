@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import {
   SafeAreaView,
   ScrollView,
@@ -13,11 +13,6 @@ import { RootStackParamList } from "./ScavengerHuntEnter";
 import { StackScreenProps } from "@react-navigation/stack";
 import { showMessage } from "react-native-flash-message";
 import { useAuth } from "./context/AuthContext";
-import {
-  CommonActions,
-  NavigationHelpersContext,
-  useIsFocused,
-} from "@react-navigation/native";
 
 type Props = StackScreenProps<RootStackParamList, "Clue">;
 

@@ -6,7 +6,6 @@ import {
   appleAuth,
   AppleRequestResponseFullName,
 } from "@invertase/react-native-apple-authentication";
-import { getAuth } from "firebase/auth";
 
 export interface UserType {
   email: string | null;

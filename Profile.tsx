@@ -1,5 +1,4 @@
 import React, { FC, ReactElement, useEffect, useState } from "react";
-import { useIsFocused } from "@react-navigation/native";
 import { Text, View } from "react-native";
 import { useAuth } from "./context/AuthContext";
 import QRCode from "react-native-qrcode-svg";
