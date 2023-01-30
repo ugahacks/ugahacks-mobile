@@ -66,6 +66,13 @@ const Styles = StyleSheet.create({
     backgroundColor: "#DC4141",
     borderRadius: 50,
   },
+  button_delete: {
+    alignItems: "center",
+    justifyContent: "center",
+    height: 44,
+    backgroundColor: "#252526",
+    borderRadius: 50,
+  },
   scavenger_hunt_button: {
     alignItems: "center",
     justifyContent: "center",
