@@ -15,7 +15,11 @@ import { Card } from "react-native-shadow-cards";
 import Styles from "./Styles";
 import { EventTag } from "./enums/EventTag";
 import { useAuth } from "./context/AuthContext";
-import { customSchedule } from "./hacks8FridaySchedule";
+import {
+  customSchedule,
+  fridayObject,
+  fridaySchedule,
+} from "./hacks8FridaySchedule";
 
 export interface Event {
   name: string;
@@ -82,7 +86,6 @@ function ScheduleBuilder(props: {
       await removeFromCustomSchedule(name, startTime, day);
     }
   }
-
   return (
     <>
       <StatusBar />
@@ -127,19 +130,13 @@ function ScheduleBuilder(props: {
                 <Text style={Styles.modal_textStyle}>Back to Schedule</Text>
               </Pressable>
               <Pressable
-                style={[
-                  Styles.modal_button_custom,
-                  Styles.modal_buttonClose_custom,
-                ]}
+                style={[Styles.modal_button, Styles.modal_buttonClose]}
                 onPress={() =>
                   onPress(
                     modalTitle,
                     modalStartTime,
                     props.day,
-                    modalTitle in
-                      (modalStartTime in props.userSchedule
-                        ? props.userSchedule[modalStartTime]
-                        : {})
+                    modalTitle in props.userSchedule[modalStartTime]
                   )
                 }
               >
@@ -158,56 +155,72 @@ function ScheduleBuilder(props: {
           </View>
         </Modal>
         <ScrollView>
-          {props.schedule?.map((events, index) => {
-            return (
-              <View key={index}>
-                <View>
-                  <Text style={{ padding: 5, fontSize: 20, color: "white" }}>
-                    {events.start}
-                  </Text>
+          <View style={{ marginBottom: 20, marginTop: 15 }}>
+            <Text
+              style={{
+                color: "white",
+                fontWeight: "bold",
+                textAlign: "center",
+              }}
+            >
+              Add events to your schedule to build your own schedule!
+            </Text>
+          </View>
+          {props.schedule.map((events, index) => {
+            if (events.start in props.userSchedule) {
+              return (
+                <View key={index}>
+                  <View>
+                    <Text style={{ padding: 5, fontSize: 20, color: "white" }}>
+                      {events.start}
+                    </Text>
+                  </View>
+
+                  {events.eventList.map((event, index) => {
+                    if (event.name in props.userSchedule[event.startTime]) {
+                      return (
+                        <TouchableOpacity
+                          key={index}
+                          onPress={() => {
+                            setModalDescription(event.description);
+                            setModalTitle(event.name);
+                            setModalStartTime(event.startTime);
+                            setModalEndTime(event.endTime);
+                            setModalEventType(event.tag);
+                            setModalLocation(event.location);
+                            setModalVisible(true);
+                          }}
+                        >
+                          <Card
+                            style={{
+                              marginLeft: 15,
+                              marginBottom: 15,
+                              marginRight: 15,
+                              padding: 10,
+                              backgroundColor: "#212124",
+                              cornerRadius: 20,
+                            }}
+                          >
+                            <Text style={{ color: "white", fontSize: 18 }}>
+                              {event.name}
+                            </Text>
+                            <Text style={{ color: "#B3B3B3", fontSize: 16 }}>
+                              {event.location}
+                            </Text>
+                            <Text style={{ color: "#818181", fontSize: 16 }}>
+                              {event.startTime} - {event.endTime}
+                            </Text>
+                            <Text style={{ color: eventTagColor(event.tag) }}>
+                              {event.tag}
+                            </Text>
+                          </Card>
+                        </TouchableOpacity>
+                      );
+                    }
+                  })}
                 </View>
-                {events.eventList.map((event, index) => {
-                  return (
-                    <TouchableOpacity
-                      key={index}
-                      onPress={() => {
-                        setModalDescription(event.description);
-                        setModalTitle(event.name);
-                        setModalStartTime(event.startTime);
-                        setModalEndTime(event.endTime);
-                        setModalEventType(event.tag);
-                        setModalLocation(event.location);
-                        setModalVisible(true);
-                      }}
-                    >
-                      <Card
-                        style={{
-                          marginLeft: 15,
-                          marginBottom: 15,
-                          marginRight: 15,
-                          padding: 10,
-                          backgroundColor: "#212124",
-                          cornerRadius: 20,
-                        }}
-                      >
-                        <Text style={{ color: "white", fontSize: 18 }}>
-                          {event.name}
-                        </Text>
-                        <Text style={{ color: "#B3B3B3", fontSize: 16 }}>
-                          {event.location}
-                        </Text>
-                        <Text style={{ color: "#818181", fontSize: 16 }}>
-                          {event.startTime} - {event.endTime}
-                        </Text>
-                        <Text style={{ color: eventTagColor(event.tag) }}>
-                          {event.tag}
-                        </Text>
-                      </Card>
-                    </TouchableOpacity>
-                  );
-                })}
-              </View>
-            );
+              );
+            }
           })}
         </ScrollView>
       </SafeAreaView>
@@ -215,7 +228,7 @@ function ScheduleBuilder(props: {
   );
 }
 
-export default function ScheduleScreen() {
+export default function MyScheduleScreen() {
   const Tab = createMaterialTopTabNavigator();
   const {
     getSchedule,
@@ -224,6 +237,8 @@ export default function ScheduleScreen() {
     scheduleSaturday,
     scheduleSunday,
     myScheduleFriday,
+    myScheduleSaturday,
+    myScheduleSunday,
     changedFriday,
     setChangedFriday,
     changedSaturday,
@@ -271,7 +286,7 @@ export default function ScheduleScreen() {
       setChangedCustomSunday(false);
     }
   }, [changedCustomFriday, changedCustomSaturday, changedCustomSunday]);
-
+  console.log(myScheduleFriday);
   return (
     <Tab.Navigator
       screenOptions={{
@@ -287,7 +302,7 @@ export default function ScheduleScreen() {
           <ScheduleBuilder
             schedule={scheduleFriday}
             userSchedule={myScheduleFriday}
-            day={"friday"}
+            day="friday"
             {...props}
           />
         )}
@@ -296,8 +311,8 @@ export default function ScheduleScreen() {
         {(props) => (
           <ScheduleBuilder
             schedule={scheduleSaturday}
-            userSchedule={customSchedule}
-            day={"saturday"}
+            userSchedule={myScheduleSaturday}
+            day="saturday"
             {...props}
           />
         )}
@@ -306,12 +321,18 @@ export default function ScheduleScreen() {
         {(props) => (
           <ScheduleBuilder
             schedule={scheduleSunday}
-            userSchedule={customSchedule}
-            day={"sunday"}
+            userSchedule={myScheduleSunday}
+            day="sunday"
             {...props}
           />
         )}
       </Tab.Screen>
+      {/* <Tab.Screen name="Saturday">
+        {(props) => <ScheduleBuilder schedule={scheduleSaturday} {...props} />}
+      </Tab.Screen>
+      <Tab.Screen name="Sunday">
+        {(props) => <ScheduleBuilder schedule={scheduleSunday} {...props} />}
+      </Tab.Screen> */}
     </Tab.Navigator>
   );
 }

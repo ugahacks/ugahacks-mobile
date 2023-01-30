@@ -30,6 +30,7 @@ import auth, { FirebaseAuthTypes } from "@react-native-firebase/auth";
 import FlashMessage from "react-native-flash-message";
 import Schedule from "./Schedule";
 import ScavengerHuntEnter from "./ScavengerHuntEnter";
+import MyScheduleScreen from "./MySchedule";
 
 function UserRegistrationScreen() {
   return (
@@ -239,6 +240,16 @@ const App = () => {
                 <Tab.Screen
                   name="Schedule"
                   component={Schedule}
+                  options={{
+                    headerTitle: () => <LogoTitle />,
+                    tabBarIcon: ({}) => {
+                      return <Icon name="calendar" size={25} color="white" />;
+                    },
+                  }}
+                />
+                <Tab.Screen
+                  name="My Schedule"
+                  component={MyScheduleScreen}
                   options={{
                     headerTitle: () => <LogoTitle />,
                     tabBarIcon: ({}) => {
