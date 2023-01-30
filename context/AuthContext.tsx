@@ -134,7 +134,7 @@ export const AuthContextProvider = ({
   // }
 
   // Change this variable for prod or dev
-  const isStage = true;
+  const isStage = false;
 
   let userDoc = "users";
   let scavengerHuntUsersDoc = "scavenger-hunt-users";
