@@ -20,6 +20,7 @@ import {
   fridayObject,
   fridaySchedule,
 } from "./hacks8FridaySchedule";
+import { useIsFocused } from "@react-navigation/native";
 
 export interface Event {
   name: string;
@@ -253,6 +254,8 @@ export default function MyScheduleScreen() {
     setChangedCustomSunday,
   } = useAuth();
 
+  const isFocused = useIsFocused();
+
   useEffect(() => {
     if (changedFriday) {
       getSchedule("friday");
@@ -275,7 +278,6 @@ export default function MyScheduleScreen() {
       getCustomSchedule("friday");
       setChangedCustomFriday(false);
     }
-
     if (changedCustomSaturday) {
       getCustomSchedule("saturday");
       setChangedCustomSaturday(false);
@@ -286,7 +288,7 @@ export default function MyScheduleScreen() {
       setChangedCustomSunday(false);
     }
   }, [changedCustomFriday, changedCustomSaturday, changedCustomSunday]);
-  console.log(myScheduleFriday);
+
   return (
     <Tab.Navigator
       screenOptions={{

@@ -142,7 +142,7 @@ export const AuthContextProvider = ({
   if (isStage) {
     userDoc = "users-stage";
     scavengerHuntUsersDoc = "scavenger-hunt-users-stage";
-    userSchedulesDoc = "schedules-user-stage";
+    userSchedulesDoc = "schedules-users-stage";
   }
 
   useEffect(() => {
@@ -771,8 +771,7 @@ export const AuthContextProvider = ({
 
     const mySchedule = docSnap.data();
 
-    for (const time in mySchedule) {
-      console.log(time);
+    for (let time in mySchedule) {
       if (Object.keys(mySchedule[time]).length === 0) {
         await firestore()
           .collection(userSchedulesDoc)
@@ -809,6 +808,7 @@ export const AuthContextProvider = ({
         }
 
         setMyScheduleFriday(myFriday);
+        return;
       case "saturday":
         const mySaturday = docSnap.data();
 
@@ -818,6 +818,7 @@ export const AuthContextProvider = ({
         }
 
         setMyScheduleSaturday(mySaturday);
+        return;
       case "sunday":
         const mySunday = docSnap.data();
 
@@ -827,6 +828,7 @@ export const AuthContextProvider = ({
         }
 
         setMyScheduleSunday(mySunday);
+        return;
       default:
         return;
     }
