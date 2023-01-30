@@ -16,7 +16,6 @@ import { Card } from "react-native-shadow-cards";
 import Styles from "./Styles";
 import { EventTag } from "./enums/EventTag";
 import { useAuth } from "./context/AuthContext";
-import { customSchedule } from "./hacks8FridaySchedule";
 
 export interface Event {
   name: string;
@@ -159,6 +158,26 @@ function ScheduleBuilder(props: {
           </View>
         </Modal>
         <ScrollView>
+          <View style={{ marginBottom: 20, marginTop: 15 }}>
+            <Text
+              style={{
+                color: "white",
+                fontWeight: "bold",
+                textAlign: "center",
+              }}
+            >
+              Click on each event for more info and add to your schedule!
+            </Text>
+            <Text
+              style={{
+                color: "white",
+                fontWeight: "bold",
+                textAlign: "center",
+              }}
+            >
+              A star in the event means that it is in your schedule
+            </Text>
+          </View>
           {props.schedule?.map((events, index) => {
             return (
               <View key={index}>
