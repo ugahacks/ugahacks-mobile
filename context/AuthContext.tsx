@@ -6,6 +6,7 @@ import {
   appleAuth,
   AppleRequestResponseFullName,
 } from "@invertase/react-native-apple-authentication";
+import { getAuth } from "firebase/auth";
 
 export interface UserType {
   email: string | null;
@@ -138,11 +139,17 @@ export const AuthContextProvider = ({
   let userDoc = "users";
   let scavengerHuntUsersDoc = "scavenger-hunt-users";
   let userSchedulesDoc = "schedules-users";
+  let userESportsDoc = "user-e-sports-details";
+  let userWorkshopDoc = "user-workshop-details";
+  let userRegistrationDoc = "user-registration-details";
 
   if (isStage) {
     userDoc = "users-stage";
     scavengerHuntUsersDoc = "scavenger-hunt-users-stage";
     userSchedulesDoc = "schedules-users-stage";
+    userESportsDoc = "user-e-sports-details-stage";
+    userWorkshopDoc = "user-workshop-details-stage";
+    userRegistrationDoc = "user-registration-details-stage";
   }
 
   useEffect(() => {
@@ -955,6 +962,44 @@ export const AuthContextProvider = ({
     await auth().signOut();
   };
 
+  const deleteAccount = async () => {
+    if (!user.uid) {
+      return;
+    }
+    // First remove all uid references in db
+    await firestore().collection(userDoc).doc(user.uid).delete();
+    await firestore().collection(scavengerHuntUsersDoc).doc(user.uid).delete();
+    await firestore()
+      .collection(userSchedulesDoc)
+      .doc(user.uid)
+      .collection("schedule")
+      .doc("friday")
+      .delete();
+    await firestore()
+      .collection(userSchedulesDoc)
+      .doc(user.uid)
+      .collection("schedule")
+      .doc("saturday")
+      .delete();
+    await firestore()
+      .collection(userSchedulesDoc)
+      .doc(user.uid)
+      .collection("schedule")
+      .doc("sunday")
+      .delete();
+    await firestore().collection(userESportsDoc).doc(user.uid).delete();
+    await firestore().collection(userWorkshopDoc).doc(user.uid).delete();
+    await firestore().collection(userRegistrationDoc).doc(user.uid).delete();
+
+    // Finally delete the account
+    auth()
+      .currentUser?.delete()
+      .then(() => console.log("User deleted"))
+      .catch((error) => console.log(error));
+
+    await logOut();
+  };
+
   return (
     <AuthContext.Provider
       value={{
@@ -1010,6 +1055,7 @@ export const AuthContextProvider = ({
         addToCustomSchedule,
         removeFromCustomSchedule,
         getCustomSchedule,
+        deleteAccount,
       }}
     >
       {loading ? null : children}
