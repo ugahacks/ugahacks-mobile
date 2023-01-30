@@ -30,7 +30,6 @@ import auth, { FirebaseAuthTypes } from "@react-native-firebase/auth";
 import FlashMessage from "react-native-flash-message";
 import ScheduleScreen from "./Schedule";
 import ScavengerHuntEnter from "./ScavengerHuntEnter";
-import MyScheduleScreen from "./MySchedule";
 
 function UserRegistrationScreen() {
   return (
