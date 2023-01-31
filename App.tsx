@@ -5,7 +5,6 @@
  * @format
  */
 import "react-native-gesture-handler";
-import "./config/firebase";
 import React, { useEffect, useState } from "react";
 import {
   Image,

@@ -15,4 +15,4 @@ web-build/
 
 ugahacks-core-infra-6487485d3635.json
 
-config/*
+firebase.ts
