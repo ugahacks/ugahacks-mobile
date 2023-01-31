@@ -468,6 +468,7 @@ export const AuthContextProvider = ({
       setScavengerHuntInformation(google_user.uid);
     } catch (err: any) {
       console.log(err);
+      alert(err);
     }
   };
 

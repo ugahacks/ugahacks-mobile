@@ -33,7 +33,7 @@
       "googleServicesFile": "./GoogleService-Info.plist",
       "bundleIdentifier": "com.ugahacks.ugahacksmobile",
       "supportsTablet": true,
-      "buildNumber": "11",
+      "buildNumber": "12",
       "icon": "./assets/UH8AppIcon.png",
       "entitlements": {
         "com.apple.developer.applesignin": [
@@ -48,7 +48,7 @@
         "backgroundColor": "#FFFFFF"
       },
       "package": "com.genki135.ugahacksmobile",
-      "versionCode": 3
+      "versionCode": 5
     },
     "web": {
       "favicon": "./assets/favicon.png"
