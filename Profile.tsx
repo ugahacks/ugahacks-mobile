@@ -28,12 +28,7 @@ export const Profile: FC<{}> = ({}): ReactElement => {
               <Text style={{ marginBottom: 15, fontSize: 18, color: "white" }}>
                 Use this QR code to check-in to events! 🐶
               </Text>
-              <QRCode
-                size={200}
-                value={userInfo.uid}
-                logo={hacks8Logo}
-                logoBackgroundColor="black"
-              />
+              <QRCode size={200} value={userInfo.uid} />
             </View>
           </>
         ) : null}
