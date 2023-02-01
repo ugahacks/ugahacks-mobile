@@ -419,14 +419,19 @@ export const AuthContextProvider = ({
 
       // Get user id token
       const { idToken } = await GoogleSignin.signIn();
+      alert(idToken);
 
       // Create a google credential with the token
       const googleCredential = auth.GoogleAuthProvider.credential(idToken);
+      alert(googleCredential);
 
       // Sign in the user with the credential
       const res = await auth().signInWithCredential(googleCredential);
+      alert(res);
 
       const google_user = res.user;
+      console.log(google_user);
+      alert(google_user);
 
       const docSnap = await firestore()
         .collection(userDoc)
