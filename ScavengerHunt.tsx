@@ -164,6 +164,17 @@ export default function ScavengerHunt() {
             located in MLC! Once you find the password, it unlocks a question
             that you can answer to unlock the next clue!
           </Text>
+          <Text
+            style={{
+              color: "white",
+              marginTop: 15,
+              marginBottom: 20,
+              fontSize: 18,
+              textAlign: "center",
+            }}
+          >
+            The Scavenger Hunt will be available Saturday and Sunday only!
+          </Text>
           {!scavengerHuntStatus.question1 ? (
             <View style={{ marginBottom: 15 }}>
               <TouchableOpacity onPress={() => onPress(1)}>
