@@ -167,7 +167,6 @@ export default function ScavengerHunt() {
           <Text
             style={{
               color: "white",
-              marginTop: 15,
               marginBottom: 20,
               fontSize: 18,
               textAlign: "center",
