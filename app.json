@@ -14,7 +14,7 @@
         }
       ]
     ],
-    "version": "1.1.1",
+    "version": "1.2.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
@@ -31,7 +31,7 @@
       "googleServicesFile": "./GoogleService-Info.plist",
       "bundleIdentifier": "com.ugahacks.ugahacksmobile",
       "supportsTablet": true,
-      "buildNumber": "15",
+      "buildNumber": "16",
       "icon": "./assets/UH8AppIcon.png",
       "entitlements": {
         "com.apple.developer.applesignin": ["Default"]
@@ -44,7 +44,7 @@
         "backgroundColor": "#FFFFFF"
       },
       "package": "com.genki135.ugahacksmobile",
-      "versionCode": 7
+      "versionCode": 8
     },
     "web": {
       "favicon": "./assets/favicon.png"
