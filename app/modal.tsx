@@ -1,18 +1,23 @@
-import { StatusBar } from 'expo-status-bar';
-import { Platform, StyleSheet } from 'react-native';
-
-import EditScreenInfo from '../components/EditScreenInfo';
-import { Text, View } from '../components/Themed';
+import React from "react";
+import { Platform, StyleSheet } from "react-native";
+import { Text, View } from "../components/Themed";
+import QRCode from "react-native-qrcode-svg";
 
 export default function ModalScreen() {
+  const uid = "asdyfuioaysdifoyasd7f97a0sd7f0-a7s89d6fa79s6df";
+  const tshirt_size = "Large";
+
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Modal</Text>
-      <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
-      <EditScreenInfo path="app/modal.tsx" />
-
-      {/* Use a light status bar on iOS to account for the black space above the modal */}
-      <StatusBar style={Platform.OS === 'ios' ? 'light' : 'auto'} />
+      <Text style={styles.name}>Shawn Pradeep</Text>
+      <View style={styles.qrContainer}>
+        <QRCode value={uid} size={300} ecl={"H"} />
+      </View>
+      <Text style={styles.tshirtSize}>{tshirt_size}</Text>
+      <View style={styles.statusContainer}>
+        <Text style={styles.statusText}>check-in: {}</Text>
+        <Text style={styles.statusText}>check-out: {}</Text>
+      </View>
     </View>
   );
 }
@@ -20,16 +25,30 @@ export default function ModalScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
+    alignItems: "center",
+    // justifyContent: "center",
   },
-  title: {
-    fontSize: 20,
-    fontWeight: 'bold',
+  name: {
+    fontSize: 28,
+    marginTop: 50,
   },
-  separator: {
-    marginVertical: 30,
-    height: 1,
-    width: '80%',
+  qrContainer: {
+    marginTop: 50,
+    borderRadius: 10,
+    overflow: "hidden",
+  },
+  tshirtSize: {
+    fontSize: 48,
+    marginTop: 50,
+  },
+  statusContainer: {
+    position: "absolute",
+    bottom: 0,
+    left: 0,
+    marginBottom: 50,
+    paddingLeft: 20,
+  },
+  statusText: {
+    padding: 10,
   },
 });
