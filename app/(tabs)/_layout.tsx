@@ -3,6 +3,7 @@ import { Link, Tabs } from "expo-router";
 import { Pressable } from "react-native";
 import React from "react";
 import Colors from "../../constants/Colors";
+import QRCodeModal from "../../components/QRCodeModal";
 
 /**
  * You can explore the built-in icon families and icons on the web at https://icons.expo.fyi/
@@ -31,23 +32,7 @@ export default function TabLayout() {
           },
           tabBarLabel: "Home",
           tabBarIcon: ({ color }) => <TabBarIcon name="home" color={color} />,
-          headerRight: () => (
-            <Link href="/modal" asChild>
-              <Pressable>
-                {({ pressed }) => (
-                  <FontAwesome
-                    name="qrcode"
-                    size={25}
-                    color={Colors["light"].text}
-                    style={{
-                      marginRight: 15,
-                      opacity: pressed ? 0.5 : 1,
-                    }}
-                  />
-                )}
-              </Pressable>
-            </Link>
-          ),
+          headerRight: () => <QRCodeModal />,
         }}
       />
       <Tabs.Screen
