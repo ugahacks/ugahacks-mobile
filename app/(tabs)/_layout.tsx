@@ -1,7 +1,7 @@
 import FontAwesome from "@expo/vector-icons/FontAwesome";
 import { Link, Tabs } from "expo-router";
-import { Pressable, useColorScheme } from "react-native";
-
+import { Pressable } from "react-native";
+import React from "react";
 import Colors from "../../constants/Colors";
 
 /**
@@ -39,7 +39,10 @@ export default function TabLayout() {
                     name="qrcode"
                     size={25}
                     color={Colors["light"].text}
-                    style={{ marginRight: 15, opacity: pressed ? 0.5 : 1 }}
+                    style={{
+                      marginRight: 15,
+                      opacity: pressed ? 0.5 : 1,
+                    }}
                   />
                 )}
               </Pressable>
@@ -67,7 +70,10 @@ export default function TabLayout() {
                     name="qrcode"
                     size={25}
                     color={Colors["light"].text}
-                    style={{ marginRight: 15, opacity: pressed ? 0.5 : 1 }}
+                    style={{
+                      marginRight: 15,
+                      opacity: pressed ? 0.5 : 1,
+                    }}
                   />
                 )}
               </Pressable>
@@ -92,7 +98,10 @@ export default function TabLayout() {
                     name="qrcode"
                     size={25}
                     color={Colors["light"].text}
-                    style={{ marginRight: 15, opacity: pressed ? 0.5 : 1 }}
+                    style={{
+                      marginRight: 15,
+                      opacity: pressed ? 0.5 : 1,
+                    }}
                   />
                 )}
               </Pressable>
