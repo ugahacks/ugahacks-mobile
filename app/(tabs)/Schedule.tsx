@@ -122,12 +122,12 @@ const styles = StyleSheet.create({
     height: 10,
     borderRadius: 5,
     marginRight: 10,
-    marginLeft: "4%",
+    marginLeft: 14.75,
   },
   verticalLine: {
     position: "absolute",
     height: "100%",
     width: 1,
-    marginLeft: "5%",
+    marginLeft: 19,
   },
 });
