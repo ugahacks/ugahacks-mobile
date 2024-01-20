@@ -42,24 +42,33 @@ export default function Schedule() {
         </TouchableOpacity>
       </View>
       <View style={styles.scheduleContainer}>
-        <Event
-          title="Event Check-In"
-          type="alert"
-          location="Miller Learning Center"
-          time="5:00pm - 6:30pm"
-        />
-        <Event
-          title="Breakfast"
-          type="meal"
-          location="Miller Learning Center"
-          time="5:00pm - 6:30pm"
-        />
-        <Event
-          title="Intro to Google Cloud"
-          type="tech talk"
-          location="Miller Learning Center"
-          time="5:00pm - 6:30pm"
-        />
+        <View style={styles.sidebar}>
+          <View style={styles.dot} />
+          <Event
+            title="Event Check-In"
+            type="alert"
+            location="Miller Learning Center"
+            time="5:00pm - 6:30pm"
+          />
+        </View>
+        <View style={styles.sidebar}>
+          <View style={styles.dot} />
+          <Event
+            title="Breakfast"
+            type="meal"
+            location="Miller Learning Center"
+            time="5:00pm - 6:30pm"
+          />
+        </View>
+        <View style={styles.sidebar}>
+          <View style={styles.dot} />
+          <Event
+            title="Intro to Google Cloud"
+            type="tech talk"
+            location="Miller Learning Center"
+            time="5:00pm - 6:30pm"
+          />
+        </View>
       </View>
     </View>
   );
@@ -96,6 +105,20 @@ const styles = StyleSheet.create({
   scheduleContainer: {
     marginTop: 40,
     width: "100%",
+    alignItems: "flex-start",
+  },
+  sidebar: {
+    flexDirection: "row",
     alignItems: "center",
+    marginBottom: 20,
+    width: "100%",
+  },
+  dot: {
+    width: 10,
+    height: 10,
+    borderRadius: 5,
+    backgroundColor: "black",
+    marginRight: 10,
+    marginLeft: "5%",
   },
 });
