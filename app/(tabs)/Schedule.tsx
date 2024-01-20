@@ -43,6 +43,7 @@ export default function Schedule() {
       </View>
       <View style={styles.scheduleContainer}>
         <View style={styles.sidebar}>
+          <View style={styles.verticalLine} />
           <View style={styles.dot} />
           <Event
             title="Event Check-In"
@@ -52,6 +53,7 @@ export default function Schedule() {
           />
         </View>
         <View style={styles.sidebar}>
+          <View style={styles.verticalLine} />
           <View style={styles.dot} />
           <Event
             title="Breakfast"
@@ -61,6 +63,7 @@ export default function Schedule() {
           />
         </View>
         <View style={styles.sidebar}>
+          <View style={styles.verticalLine} />
           <View style={styles.dot} />
           <Event
             title="Intro to Google Cloud"
@@ -69,7 +72,7 @@ export default function Schedule() {
             time="5:00pm - 6:30pm"
           />
         </View>
-      </View>
+      </View>{" "}
     </View>
   );
 }
@@ -110,7 +113,7 @@ const styles = StyleSheet.create({
   sidebar: {
     flexDirection: "row",
     alignItems: "center",
-    marginBottom: 20,
+    marginBottom: 0,
     width: "100%",
   },
   dot: {
@@ -119,6 +122,13 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     backgroundColor: "black",
     marginRight: 10,
+    marginLeft: "4%",
+  },
+  verticalLine: {
+    position: "absolute",
+    height: "100%",
+    width: 1,
+    backgroundColor: "black",
     marginLeft: "5%",
   },
 });
