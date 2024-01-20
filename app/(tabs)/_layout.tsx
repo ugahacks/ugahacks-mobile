@@ -47,23 +47,7 @@ export default function TabLayout() {
           tabBarIcon: ({ color }) => (
             <TabBarIcon name="calendar" color={color} />
           ),
-          headerRight: () => (
-            <Link href="/modal" asChild>
-              <Pressable>
-                {({ pressed }) => (
-                  <FontAwesome
-                    name="qrcode"
-                    size={25}
-                    color={Colors["light"].text}
-                    style={{
-                      marginRight: 15,
-                      opacity: pressed ? 0.5 : 1,
-                    }}
-                  />
-                )}
-              </Pressable>
-            </Link>
-          ),
+          headerRight: () => <QRCodeModal />,
         }}
       />
       <Tabs.Screen
@@ -75,23 +59,7 @@ export default function TabLayout() {
             letterSpacing: 3,
           },
           tabBarIcon: ({ color }) => <TabBarIcon name="user" color={color} />,
-          headerRight: () => (
-            <Link href="/modal" asChild>
-              <Pressable>
-                {({ pressed }) => (
-                  <FontAwesome
-                    name="qrcode"
-                    size={25}
-                    color={Colors["light"].text}
-                    style={{
-                      marginRight: 15,
-                      opacity: pressed ? 0.5 : 1,
-                    }}
-                  />
-                )}
-              </Pressable>
-            </Link>
-          ),
+          headerRight: () => <QRCodeModal />,
         }}
       />
     </Tabs>
