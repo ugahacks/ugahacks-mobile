@@ -73,7 +73,7 @@ export default function Schedule() {
             time="5:00pm - 6:30pm"
           />
         </View>
-      </View>{" "}
+      </View>
     </View>
   );
 }
@@ -123,13 +123,11 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     marginRight: 10,
     marginLeft: "4%",
-    //backgroundColor: Colors[colorScheme].tint,
   },
   verticalLine: {
     position: "absolute",
     height: "100%",
     width: 1,
     marginLeft: "5%",
-    //backgroundColor: Colors[colorScheme].tint,
   },
 });
