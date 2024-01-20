@@ -2,6 +2,7 @@ import { ScrollView, StyleSheet, TouchableOpacity } from "react-native";
 import { Text, View } from "../../components/Themed";
 import { useState } from "react";
 import Event from "../../components/Event";
+import React from "react";
 
 export default function Schedule() {
   const [day, setDay] = useState("Friday");
