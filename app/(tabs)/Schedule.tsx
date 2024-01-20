@@ -1,10 +1,11 @@
 import { ScrollView, StyleSheet, TouchableOpacity } from "react-native";
-import { Text, View } from "../../components/Themed";
+import { Text, View, useThemeColor } from "../../components/Themed";
 import { useState } from "react";
 import Event from "../../components/Event";
 import React from "react";
 
 export default function Schedule() {
+  const tintColor = useThemeColor({}, "tint");
   const [day, setDay] = useState("Friday");
 
   const showFridaySchedule = () => {
@@ -42,9 +43,9 @@ export default function Schedule() {
         </TouchableOpacity>
       </View>
       <View style={styles.scheduleContainer}>
-        <View style={styles.sidebar}>
-          <View style={styles.verticalLine} />
-          <View style={styles.dot} />
+        <View style={[styles.sidebar, { borderColor: tintColor }]}>
+          <View style={[styles.verticalLine, { backgroundColor: tintColor }]} />
+          <View style={[styles.dot, { backgroundColor: tintColor }]} />
           <Event
             title="Event Check-In"
             type="alert"
@@ -52,9 +53,9 @@ export default function Schedule() {
             time="5:00pm - 6:30pm"
           />
         </View>
-        <View style={styles.sidebar}>
-          <View style={styles.verticalLine} />
-          <View style={styles.dot} />
+        <View style={[styles.sidebar, { borderColor: tintColor }]}>
+          <View style={[styles.verticalLine, { backgroundColor: tintColor }]} />
+          <View style={[styles.dot, { backgroundColor: tintColor }]} />
           <Event
             title="Breakfast"
             type="meal"
@@ -62,9 +63,9 @@ export default function Schedule() {
             time="5:00pm - 6:30pm"
           />
         </View>
-        <View style={styles.sidebar}>
-          <View style={styles.verticalLine} />
-          <View style={styles.dot} />
+        <View style={[styles.sidebar, { borderColor: tintColor }]}>
+          <View style={[styles.verticalLine, { backgroundColor: tintColor }]} />
+          <View style={[styles.dot, { backgroundColor: tintColor }]} />
           <Event
             title="Intro to Google Cloud"
             type="tech talk"
@@ -120,15 +121,15 @@ const styles = StyleSheet.create({
     width: 10,
     height: 10,
     borderRadius: 5,
-    backgroundColor: "black",
     marginRight: 10,
     marginLeft: "4%",
+    //backgroundColor: Colors[colorScheme].tint,
   },
   verticalLine: {
     position: "absolute",
     height: "100%",
     width: 1,
-    backgroundColor: "black",
     marginLeft: "5%",
+    //backgroundColor: Colors[colorScheme].tint,
   },
 });
