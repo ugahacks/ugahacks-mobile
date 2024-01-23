@@ -5,7 +5,7 @@ import Event from "../../components/Event";
 import React from "react";
 
 export default function Schedule() {
-  const tintColor = useThemeColor({}, "tint");
+  const tintColor = useThemeColor({}, "tabIconDefault");
   const [day, setDay] = useState("Friday");
 
   const showFridaySchedule = () => {
