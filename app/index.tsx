@@ -18,6 +18,8 @@ export default function Login() {
 
   const handleLogin = async () => {
     try {
+      setLoading(true);
+      await logIn(email, password);
       router.replace("/(tabs)");
     } catch (error: any) {
       console.log(error.message);
