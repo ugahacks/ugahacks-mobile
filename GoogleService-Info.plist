@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>436222925278-vd50v44es0r9t8mm292cjpqv7p2a07o3.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.436222925278-vd50v44es0r9t8mm292cjpqv7p2a07o3</string>
+	<key>ANDROID_CLIENT_ID</key>
+	<string>436222925278-f57k5htfbf40e18ln7kjv1r2rnhig6ev.apps.googleusercontent.com</string>
+	<key>API_KEY</key>
+	<string>AIzaSyCL4VABS4M5NMPy2IybG95A3peYwy5YPFI</string>
+	<key>GCM_SENDER_ID</key>
+	<string>436222925278</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.ugahacks.ugahacksmobile</string>
+	<key>PROJECT_ID</key>
+	<string>ugahacks-core-infra</string>
+	<key>STORAGE_BUCKET</key>
+	<string>ugahacks-core-infra.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:436222925278:ios:9dc62ff05155dd83ee654f</string>
+</dict>
+</plist>

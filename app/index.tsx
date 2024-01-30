@@ -8,10 +8,13 @@ import {
 } from "react-native";
 import { Text, View } from "../components/Themed";
 import { Link, router } from "expo-router";
+import { useAuth } from "../context/AuthContext";
 
 export default function Login() {
+  const { logIn, logInWithGoogle, logInWithApple } = useAuth();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const handleLogin = async () => {
     try {
@@ -21,7 +24,16 @@ export default function Login() {
     }
   };
 
-  const handleLoginGoogle = async () => {};
+  const googleLogin = async () => {
+    try {
+      setLoading(true);
+      await logInWithGoogle();
+      router.replace("/(tabs)");
+    } catch (error: any) {
+      alert(error);
+    }
+    setLoading(false);
+  };
 
   return (
     <View style={styles.container}>
@@ -29,7 +41,7 @@ export default function Login() {
 
       <TouchableOpacity
         style={styles.googleSSOButton}
-        onPress={handleLogin}
+        onPress={googleLogin}
         activeOpacity={0.8}
       >
         <Text style={styles.googleSSOButtonText}>

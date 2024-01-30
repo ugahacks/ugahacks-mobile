@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "436222925278",
+    "project_id": "ugahacks-core-infra",
+    "storage_bucket": "ugahacks-core-infra.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:436222925278:android:d50418352ebc6e82ee654f",
+        "android_client_info": {
+          "package_name": "com.genki135.ugahacksmobile"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "436222925278-f57k5htfbf40e18ln7kjv1r2rnhig6ev.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.genki135.ugahacksmobile",
+            "certificate_hash": "2f0616efe58cd13dcd743c2cdc57111528d2fe64"
+          }
+        },
+        {
+          "client_id": "436222925278-icl6sek8pmuel1grk9ul7qvl3eh143kj.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.genki135.ugahacksmobile",
+            "certificate_hash": "baa2a7ad73868004b1719ae8e42f0c47062ff282"
+          }
+        },
+        {
+          "client_id": "436222925278-3qrh1gl95i39bv1mjj07k72csce2mgfg.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB8ZFh9my7EeX1tWR4Ac2LbBc5N79cOCCM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "436222925278-3qrh1gl95i39bv1mjj07k72csce2mgfg.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

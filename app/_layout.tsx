@@ -8,7 +8,7 @@ import { useFonts } from "expo-font";
 import { SplashScreen, Stack } from "expo-router";
 import { useEffect } from "react";
 import { useColorScheme, Button, Text } from "react-native";
-// import { AuthContextProvider } from "../context/AuthContext";
+import { AuthContextProvider } from "../context/AuthContext";
 
 export {
   // Catch any errors thrown by the Layout component.
@@ -53,17 +53,17 @@ function RootLayoutNav() {
   const colorScheme = useColorScheme();
 
   return (
-    // <AuthContextProvider>
-    <ThemeProvider value={colorScheme === "dark" ? DarkTheme : DefaultTheme}>
-      <Stack>
-        <Stack.Screen name="index" options={{ headerShown: false }} />
-        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-        <Stack.Screen
-          name="modal"
-          options={{ presentation: "modal", headerTitle: "QR Passport" }}
-        />
-      </Stack>
-    </ThemeProvider>
-    // </AuthContextProvider>
+    <AuthContextProvider>
+      <ThemeProvider value={colorScheme === "dark" ? DarkTheme : DefaultTheme}>
+        <Stack>
+          <Stack.Screen name="index" options={{ headerShown: false }} />
+          <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+          <Stack.Screen
+            name="modal"
+            options={{ presentation: "modal", headerTitle: "QR Passport" }}
+          />
+        </Stack>
+      </ThemeProvider>
+    </AuthContextProvider>
   );
 }

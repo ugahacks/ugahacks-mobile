@@ -1,7 +1,6 @@
 import React from "react";
 import { Platform, StyleSheet } from "react-native";
 import { Text, View } from "../components/Themed";
-import QRCode from "react-native-qrcode-svg";
 
 export default function ModalScreen() {
   const uid = "asdyfuioaysdifoyasd7f97a0sd7f0-a7s89d6fa79s6df";
@@ -11,7 +10,7 @@ export default function ModalScreen() {
     <View style={styles.container}>
       <Text style={styles.name}>Shawn Pradeep</Text>
       <View style={styles.qrContainer}>
-        <QRCode value={uid} size={300} ecl={"H"} />
+        {/* <QRCode value={uid} size={300} ecl={"H"} /> */}
       </View>
       <Text style={styles.tshirtSize}>{tshirt_size}</Text>
       <View style={styles.statusContainer}>

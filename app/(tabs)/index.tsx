@@ -1,18 +1,21 @@
 import { StyleSheet } from "react-native";
 import { Text, View } from "../../components/Themed";
 import { router } from "expo-router";
+import { useAuth } from "../../context/AuthContext";
 
 export default function Home() {
+  const { user, userInfo, getPoints, changedPoints, setChangedPoints, points } =
+    useAuth();
   const handleLogin = () => {
     router.replace("/");
   };
 
-  const points = 40280;
-
   return (
     <View style={styles.container}>
-      <Text style={styles.welcome}>Hi Shawn Pradeep,</Text>
-      <Text style={styles.points}>{points} pts</Text>
+      <Text style={styles.welcome}>
+        Hi {userInfo.first_name + " " + userInfo.last_name},
+      </Text>
+      <Text style={styles.points}>{userInfo.points} pts</Text>
     </View>
   );
 }
