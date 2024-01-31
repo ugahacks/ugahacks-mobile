@@ -1,18 +1,21 @@
 import React from "react";
 import { Platform, StyleSheet } from "react-native";
 import { Text, View } from "../components/Themed";
+import { useAuth } from "../context/AuthContext";
+import QRCode from "react-native-qrcode-svg";
 
 export default function ModalScreen() {
-  const uid = "asdyfuioaysdifoyasd7f97a0sd7f0-a7s89d6fa79s6df";
-  const tshirt_size = "Large";
+  const { user, userInfo } = useAuth();
 
   return (
     <View style={styles.container}>
-      <Text style={styles.name}>Shawn Pradeep</Text>
+      <Text style={styles.name}>
+        {userInfo.first_name + " " + userInfo.last_name}
+      </Text>
       <View style={styles.qrContainer}>
-        {/* <QRCode value={uid} size={300} ecl={"H"} /> */}
+        <QRCode value={user.uid} size={300} ecl={"H"} />
       </View>
-      <Text style={styles.tshirtSize}>{tshirt_size}</Text>
+      <Text style={styles.tshirtSize}>{userInfo.tshirtSize}</Text>
       <View style={styles.statusContainer}>
         <Text style={styles.statusText}>check-in: {}</Text>
         <Text style={styles.statusText}>check-out: {}</Text>

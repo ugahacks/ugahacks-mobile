@@ -6,15 +6,20 @@ import {
   appleAuth,
   AppleRequestResponseFullName,
 } from "@invertase/react-native-apple-authentication";
+import { Users } from "../enums/userTypes";
 
 export interface UserType {
   email: string | null;
   uid: string | null;
 }
 
-interface EventRegistered {
+export interface EventRegistered {
   HACKS8: boolean | null;
+  HACKS9: boolean | null;
 }
+
+export interface EventCheckIn extends EventRegistered {}
+export interface EventCheckOut extends EventRegistered {}
 
 export interface UserInfoType {
   uid: string | null;
@@ -23,7 +28,8 @@ export interface UserInfoType {
   points: number | null;
   registered: EventRegistered | null;
   scavenger_hunt_path_num: number | null;
-  //user_type: Users | null;
+  school: string | null;
+  user_type: Users | null;
 }
 
 export interface ScavengerHuntStatusType {
@@ -75,7 +81,8 @@ export const AuthContextProvider = ({
     points: null,
     registered: null,
     scavenger_hunt_path_num: null,
-    //user_type: null
+    user_type: null,
+    school: null,
   });
   const [scavengerHuntStatus, setScavengerHuntStatus] =
     useState<ScavengerHuntStatusType>({
@@ -653,7 +660,8 @@ export const AuthContextProvider = ({
       points: docSnap.data()?.points,
       registered: docSnap.data()?.registered,
       scavenger_hunt_path_num: docSnap.data()?.scavenger_hunt_group,
-      //user_type: docSnap.data().user_type,
+      user_type: docSnap.data()?.user_type,
+      school: docSnap.data()?.school,
     });
   };
 
@@ -921,6 +929,8 @@ export const AuthContextProvider = ({
       points: null,
       registered: null,
       scavenger_hunt_path_num: null,
+      user_type: null,
+      school: null,
     });
   };
 
