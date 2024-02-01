@@ -5,8 +5,15 @@ import { useAuth } from "../../context/AuthContext";
 import { useEffect, useState } from "react";
 
 export default function Home() {
-  const { user, userInfo, getPoints, changedPoints, setChangedPoints, points } =
-    useAuth();
+  const {
+    user,
+    userInfo,
+    getPoints,
+    changedPoints,
+    setChangedPoints,
+    points,
+    userRegInfo,
+  } = useAuth();
 
   const handleLogin = () => {
     router.replace("/");

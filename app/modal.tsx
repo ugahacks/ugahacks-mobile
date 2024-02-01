@@ -5,7 +5,7 @@ import { useAuth } from "../context/AuthContext";
 import QRCode from "react-native-qrcode-svg";
 
 export default function ModalScreen() {
-  const { user, userInfo } = useAuth();
+  const { user, userInfo, userRegInfo } = useAuth();
 
   return (
     <View style={styles.container}>
@@ -15,10 +15,24 @@ export default function ModalScreen() {
       <View style={styles.qrContainer}>
         <QRCode value={user.uid} size={300} ecl={"H"} />
       </View>
-      <Text style={styles.tshirtSize}>{userInfo.tshirtSize}</Text>
+      <Text style={styles.tshirtSize}>{userRegInfo.shirtSize}</Text>
       <View style={styles.statusContainer}>
-        <Text style={styles.statusText}>check-in: {}</Text>
-        <Text style={styles.statusText}>check-out: {}</Text>
+        <Text style={styles.statusText}>
+          check-in:{" "}
+          {userRegInfo.checkedIn ? (
+            <Text style={styles.yes}>true</Text>
+          ) : (
+            <Text style={styles.no}>false</Text>
+          )}
+        </Text>
+        <Text style={styles.statusText}>
+          check-out:{" "}
+          {userRegInfo.checkedIn ? (
+            <Text style={styles.yes}>true</Text>
+          ) : (
+            <Text style={styles.no}>false</Text>
+          )}
+        </Text>
       </View>
     </View>
   );
@@ -28,7 +42,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: "center",
-    // justifyContent: "center",
   },
   name: {
     fontSize: 28,
@@ -52,5 +65,11 @@ const styles = StyleSheet.create({
   },
   statusText: {
     padding: 10,
+  },
+  yes: { color: "green" },
+  no: {
+    color: "red",
+    fontWeight: "bold",
+    fontFamily: "SpaceMonoBold",
   },
 });

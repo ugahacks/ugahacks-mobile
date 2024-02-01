@@ -13,6 +13,38 @@ export interface UserType {
   uid: string | null;
 }
 
+export interface UserRegInfo {
+  uid: string | null;
+  gender: string | null;
+  phoneNumber: string | null;
+  countryResidence: string | null;
+  year: string | null;
+  major: string | null;
+  inputMajor: string | null;
+  minor: string | null;
+  email: string | null;
+  participated: boolean | null;
+  hopeToSee: string | null;
+  dietaryRestrictions: string | null;
+  inputDietaryRestrictions: string | null;
+  shirtSize: string | null;
+  codeOfConduct: boolean | null;
+  eventLogisticsInfo: boolean | null;
+  mlhCommunication: boolean | null;
+  age: string | null;
+  firstName: string | null;
+  lastName: string | null;
+  levelOfStudy: string | null;
+  school: string | null;
+  inputSchool: string | null;
+  elCreditInterest: boolean | null;
+  accepted: boolean | null;
+  checkedIn: boolean | null;
+  checkedOut: boolean | null;
+  resumeLink: string | null;
+  submitted_time: any;
+}
+
 export interface EventRegistered {
   HACKS8: boolean | null;
   HACKS9: boolean | null;
@@ -84,6 +116,39 @@ export const AuthContextProvider = ({
     user_type: null,
     school: null,
   });
+
+  const [userRegInfo, setUserRegInfo] = useState<UserRegInfo>({
+    uid: null,
+    gender: null,
+    phoneNumber: null,
+    countryResidence: null,
+    year: null,
+    major: null,
+    inputMajor: null,
+    minor: null,
+    email: null,
+    participated: null,
+    hopeToSee: null,
+    dietaryRestrictions: null,
+    inputDietaryRestrictions: null,
+    shirtSize: null,
+    codeOfConduct: null,
+    eventLogisticsInfo: null,
+    mlhCommunication: null,
+    age: null,
+    firstName: null,
+    lastName: null,
+    levelOfStudy: null,
+    school: null,
+    inputSchool: null,
+    elCreditInterest: null,
+    accepted: null,
+    checkedIn: null,
+    checkedOut: null,
+    resumeLink: null,
+    submitted_time: null,
+  });
+
   const [scavengerHuntStatus, setScavengerHuntStatus] =
     useState<ScavengerHuntStatusType>({
       clue1: false,
@@ -147,7 +212,7 @@ export const AuthContextProvider = ({
   let userSchedulesDoc = "schedules-users";
   let userESportsDoc = "user-e-sports-details";
   let userWorkshopDoc = "user-workshop-details";
-  let userRegistrationDoc = "user-registration-details";
+  let userRegistrationDoc = "UH9-user-registration-details";
 
   if (isStage) {
     userDoc = "users-stage";
@@ -409,6 +474,7 @@ export const AuthContextProvider = ({
     await createScavengerHuntDocument(user.uid);
 
     setUserInformation(user.uid);
+    setUserRegInformation(user.uid);
     setScavengerHuntInformation(user.uid);
 
     return true;
@@ -476,6 +542,7 @@ export const AuthContextProvider = ({
       await createScavengerHuntDocument(google_user.uid);
 
       setUserInformation(google_user.uid);
+      setUserRegInformation(google_user.uid);
       setScavengerHuntInformation(google_user.uid);
     } catch (err: any) {
       console.log(err);
@@ -662,6 +729,49 @@ export const AuthContextProvider = ({
       scavenger_hunt_path_num: docSnap.data()?.scavenger_hunt_group,
       user_type: docSnap.data()?.user_type,
       school: docSnap.data()?.school,
+    });
+  };
+
+  const setUserRegInformation = async (uid: string | null) => {
+    const docSnap = await firestore()
+      .collection(userRegistrationDoc)
+      .doc(uid ? uid : "")
+      .get();
+
+    if (!docSnap.exists) {
+      return null;
+    }
+
+    setUserRegInfo({
+      uid: docSnap.data()?.uid,
+      gender: docSnap.data()?.gender,
+      phoneNumber: docSnap.data()?.phoneNumber,
+      countryResidence: docSnap.data()?.countryResidence,
+      year: docSnap.data()?.year,
+      major: docSnap.data()?.major,
+      inputMajor: docSnap.data()?.inputMajor,
+      minor: docSnap.data()?.minor,
+      email: docSnap.data()?.email,
+      participated: docSnap.data()?.participated,
+      hopeToSee: docSnap.data()?.hopeToSee,
+      dietaryRestrictions: docSnap.data()?.dietaryRestrictions,
+      inputDietaryRestrictions: docSnap.data()?.inputDietaryRestrictions,
+      shirtSize: docSnap.data()?.shirtSize,
+      codeOfConduct: docSnap.data()?.codeOfConduct,
+      eventLogisticsInfo: docSnap.data()?.eventLogisticsInfo,
+      mlhCommunication: docSnap.data()?.mlhCommunication,
+      age: docSnap.data()?.age,
+      firstName: docSnap.data()?.firstName,
+      lastName: docSnap.data()?.lastName,
+      levelOfStudy: docSnap.data()?.levelOfStudy,
+      school: docSnap.data()?.school,
+      inputSchool: docSnap.data()?.inputSchool,
+      elCreditInterest: docSnap.data()?.elCreditInterest,
+      accepted: docSnap.data()?.accepted,
+      checkedIn: docSnap.data()?.checkedIn,
+      checkedOut: docSnap.data()?.checkedOut,
+      resumeLink: docSnap.data()?.resumeLink,
+      submitted_time: docSnap.data()?.submitted_time,
     });
   };
 
@@ -1018,6 +1128,7 @@ export const AuthContextProvider = ({
       value={{
         user,
         userInfo,
+        userRegInfo,
         scavengerHuntStatus,
         signUp,
         logIn,
