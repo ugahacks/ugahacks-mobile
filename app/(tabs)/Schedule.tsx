@@ -1,4 +1,4 @@
-import { Sunday, DaySchedule } from "../../components/DaySchedule";
+import { Friday, Saturday, Sunday } from "../../components/DaySchedule";
 import React from "react";
 import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
 import { NavigationContainer } from "@react-navigation/native";
@@ -9,8 +9,8 @@ export default function Schedule() {
   return (
     <NavigationContainer independent={true}>
       <Tab.Navigator>
-        <Tab.Screen name="Friday" component={DaySchedule} />
-        <Tab.Screen name="Saturday" component={DaySchedule} />
+        <Tab.Screen name="Friday" component={Friday} />
+        <Tab.Screen name="Saturday" component={Saturday} />
         <Tab.Screen name="Sunday" component={Sunday} />
       </Tab.Navigator>
     </NavigationContainer>

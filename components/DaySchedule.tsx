@@ -5,7 +5,67 @@ import React from "react";
 
 // Event highlight types:
 // type EventType = "alert" | "meal" | "tech_talk" | "side_event" | "workshop";
+
+//TODO
+// grab this data from Firebase collection
+//
 export function DaySchedule() {
+  const tintColor = useThemeColor({}, "tint");
+  return (
+    <View style={styles.container}>
+      <View style={styles.scheduleContainer}>
+        <Event
+          title="Event Check-In"
+          type="alert"
+          location="Miller Learning Center"
+          time="5:00pm - 6:30pm"
+        />
+        <Event
+          title="Breakfast"
+          type="meal"
+          location="Miller Learning Center"
+          time="5:00pm - 6:30pm"
+        />
+        <Event
+          title="Intro to Google Cloud"
+          type="tech_talk"
+          location="Miller Learning Center"
+          time="5:00pm - 6:30pm"
+        />
+      </View>
+    </View>
+  );
+}
+
+export function Friday() {
+  const tintColor = useThemeColor({}, "tint");
+  return (
+    <View style={styles.container}>
+      <View style={styles.scheduleContainer}>
+        <Event
+          title="Event Check-In"
+          type="alert"
+          location="Miller Learning Center"
+          time="5:00pm - 6:30pm"
+        />
+        <Event
+          title="Breakfast"
+          type="meal"
+          location="Miller Learning Center"
+          time="5:00pm - 6:30pm"
+        />
+        <Event
+          title="Intro to Google Cloud"
+          type="tech_talk"
+          location="Miller Learning Center"
+          time="5:00pm - 6:30pm"
+        />
+      </View>
+    </View>
+  );
+}
+
+export function Saturday() {
   const tintColor = useThemeColor({}, "tint");
   return (
     <View style={styles.container}>
