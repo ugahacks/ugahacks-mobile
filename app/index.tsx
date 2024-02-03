@@ -22,7 +22,7 @@ export default function Login() {
       await logIn(email, password);
       router.replace("/(tabs)");
     } catch (error: any) {
-      console.log(error.message);
+      alert(error.message);
     }
   };
 
@@ -32,7 +32,10 @@ export default function Login() {
       await logInWithGoogle();
       router.replace("/(tabs)");
     } catch (error: any) {
-      alert(error);
+      if (error.code === "-5") console.log(error.message);
+      else {
+        alert(error);
+      }
     }
     setLoading(false);
   };
