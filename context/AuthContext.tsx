@@ -7,6 +7,7 @@ import {
   AppleRequestResponseFullName,
 } from "@invertase/react-native-apple-authentication";
 import { Users } from "../enums/userTypes";
+import { router } from "expo-router";
 
 export interface UserType {
   email: string | null;

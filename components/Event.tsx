@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 
 type EventType = "alert" | "meal" | "tech talk" | "side event" | "workshop";
 
@@ -31,7 +31,7 @@ const Event: React.FC<EventProps> = ({ title, type, location, time }) => {
   const cardHeaderColor = getCardHeaderColor(type);
 
   return (
-    <View style={styles.container}>
+    <TouchableOpacity style={styles.container} activeOpacity={0.8}>
       <View style={[styles.cardHeader, { backgroundColor: cardHeaderColor }]}>
         <Text style={styles.title}>{title}</Text>
       </View>
@@ -39,7 +39,7 @@ const Event: React.FC<EventProps> = ({ title, type, location, time }) => {
         <Text style={styles.location}>{location}</Text>
         <Text style={styles.time}>{time}</Text>
       </View>
-    </View>
+    </TouchableOpacity>
   );
 };
 
