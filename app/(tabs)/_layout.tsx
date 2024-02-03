@@ -1,8 +1,8 @@
 import FontAwesome from "@expo/vector-icons/FontAwesome";
-import { Link, Tabs } from "expo-router";
-import { Pressable, useColorScheme } from "react-native";
-
+import { Tabs } from "expo-router";
+import React from "react";
 import Colors from "../../constants/Colors";
+import QRCodeModal from "../../components/QRCodeModal";
 
 /**
  * You can explore the built-in icon families and icons on the web at https://icons.expo.fyi/
@@ -31,20 +31,7 @@ export default function TabLayout() {
           },
           tabBarLabel: "Home",
           tabBarIcon: ({ color }) => <TabBarIcon name="home" color={color} />,
-          headerRight: () => (
-            <Link href="/modal" asChild>
-              <Pressable>
-                {({ pressed }) => (
-                  <FontAwesome
-                    name="qrcode"
-                    size={25}
-                    color={Colors["light"].text}
-                    style={{ marginRight: 15, opacity: pressed ? 0.5 : 1 }}
-                  />
-                )}
-              </Pressable>
-            </Link>
-          ),
+          headerRight: () => <QRCodeModal />,
         }}
       />
       <Tabs.Screen
@@ -59,20 +46,7 @@ export default function TabLayout() {
           tabBarIcon: ({ color }) => (
             <TabBarIcon name="calendar" color={color} />
           ),
-          headerRight: () => (
-            <Link href="/modal" asChild>
-              <Pressable>
-                {({ pressed }) => (
-                  <FontAwesome
-                    name="qrcode"
-                    size={25}
-                    color={Colors["light"].text}
-                    style={{ marginRight: 15, opacity: pressed ? 0.5 : 1 }}
-                  />
-                )}
-              </Pressable>
-            </Link>
-          ),
+          headerRight: () => <QRCodeModal />,
         }}
       />
       <Tabs.Screen
@@ -84,20 +58,7 @@ export default function TabLayout() {
             letterSpacing: 3,
           },
           tabBarIcon: ({ color }) => <TabBarIcon name="user" color={color} />,
-          headerRight: () => (
-            <Link href="/modal" asChild>
-              <Pressable>
-                {({ pressed }) => (
-                  <FontAwesome
-                    name="qrcode"
-                    size={25}
-                    color={Colors["light"].text}
-                    style={{ marginRight: 15, opacity: pressed ? 0.5 : 1 }}
-                  />
-                )}
-              </Pressable>
-            </Link>
-          ),
+          headerRight: () => <QRCodeModal />,
         }}
       />
     </Tabs>

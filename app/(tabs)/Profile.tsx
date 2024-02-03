@@ -1,6 +1,7 @@
 import { Button, StyleSheet } from "react-native";
 import { Text, View } from "../../components/Themed";
 import { router } from "expo-router";
+import React from "react";
 
 export default function ProfileScreen() {
   const handleLogin = () => {
