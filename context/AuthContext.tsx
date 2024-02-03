@@ -284,6 +284,11 @@ export const AuthContextProvider = ({
         showPlayServicesUpdateDialog: true,
       });
 
+      GoogleSignin.configure({
+        iosClientId:
+          "436222925278-vd50v44es0r9t8mm292cjpqv7p2a07o3.apps.googleusercontent.com",
+      });
+
       // Get user id token
       const { idToken } = await GoogleSignin.signIn();
 
