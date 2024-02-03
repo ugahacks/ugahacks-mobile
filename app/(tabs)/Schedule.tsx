@@ -1,4 +1,3 @@
-import { StyleSheet } from "react-native";
 import DaySchedule from "../../components/DaySchedule";
 import React from "react";
 import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
