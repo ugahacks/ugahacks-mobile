@@ -2,6 +2,7 @@ import { StyleSheet } from "react-native";
 import { View, useThemeColor } from "./Themed";
 import Event from "./Event";
 import React from "react";
+import { useAuth } from "../context/AuthContext";
 
 // Event highlight types:
 // type EventType = "alert" | "meal" | "tech_talk" | "side_event" | "workshop";
@@ -44,37 +45,36 @@ export function DaySchedule() {
   );
 }
 
-function ScheduleFromFirebase() {}
-
 export function Friday() {
+  const { scheduleFriday, getSchedule } = useAuth();
   const tintColor = useThemeColor({}, "tint");
-  return (
-    <View style={styles.container}>
-      <View style={styles.scheduleContainer}>
-        <Event
-          title="Event Check-In"
-          type="alert"
-          location="Miller Learning Center"
-          startTime={placeholderStartTime}
-          endTime={placeholderStartTime}
-        />
-        <Event
-          title="Breakfast"
-          type="meal"
-          location="Miller Learning Center"
-          startTime={placeholderStartTime}
-          endTime={placeholderEndTime}
-        />
-        <Event
-          title="Intro to Google Cloud"
-          type="tech_talk"
-          location="Miller Learning Center"
-          startTime={placeholderStartTime}
-          endTime={placeholderEndTime}
-        />
-      </View>
-    </View>
-  );
+  getSchedule();
+  return scheduleFriday;
+  //    <View style={styles.container}>
+  //      <View style={styles.scheduleContainer}>
+  //        <Event
+  //          title="Event Check-In"
+  //          type="alert"
+  //          location="Miller Learning Center"
+  //          startTime={placeholderStartTime}
+  //          endTime={placeholderStartTime}
+  //        />
+  //        <Event
+  //          title="Breakfast"
+  //          type="meal"
+  //          location="Miller Learning Center"
+  //          startTime={placeholderStartTime}
+  //          endTime={placeholderEndTime}
+  //        />
+  //        <Event
+  //          title="Intro to Google Cloud"
+  //          type="tech_talk"
+  //          location="Miller Learning Center"
+  //          startTime={placeholderStartTime}
+  //          endTime={placeholderEndTime}
+  //        />
+  //      </View>
+  //    </View>
 }
 
 export function Saturday() {
