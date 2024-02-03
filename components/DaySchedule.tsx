@@ -3,9 +3,9 @@ import { View, useThemeColor } from "./Themed";
 import Event from "./Event";
 import React from "react";
 import { useAuth } from "../context/AuthContext";
+import { useEffect } from "react";
 
-// Event highlight types:
-// type EventType = "alert" | "meal" | "tech_talk" | "side_event" | "workshop";
+// Event highlight types: type EventType = "alert" | "meal" | "tech_talk" | "side_event" | "workshop";
 
 //TODO
 // grab this data from Firebase collection
@@ -46,9 +46,12 @@ export function DaySchedule() {
 }
 
 export function Friday() {
-  const { scheduleFriday, getSchedule } = useAuth();
+  const { getSchedule, scheduleFriday } = useAuth();
+
+  useEffect(() => {
+    getSchedule("friday");
+  }, []);
   const tintColor = useThemeColor({}, "tint");
-  getSchedule();
   return scheduleFriday;
   //    <View style={styles.container}>
   //      <View style={styles.scheduleContainer}>
