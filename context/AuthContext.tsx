@@ -77,7 +77,7 @@ export const AuthContextProvider = ({
 
   // Change this variable for prod or dev
   const isStage = false;
-
+  let schedule = "schedules";
   let userDoc = "users";
   let userSchedulesDoc = "schedules-users";
   let userESportsDoc = "user-e-sports-details";
@@ -85,6 +85,7 @@ export const AuthContextProvider = ({
   let userRegistrationDoc = "user-registration-details";
 
   if (isStage) {
+    schedule = "schedule-uh9-stage";
     userDoc = "users-stage";
     userSchedulesDoc = "schedules-users-stage";
     userESportsDoc = "user-e-sports-details-stage";
@@ -129,7 +130,7 @@ export const AuthContextProvider = ({
   // Friday change listener
   useEffect(() => {
     const unsubscribe = firestore()
-      .collection("schedules")
+      .collection(schedule)
       .doc("friday")
       .onSnapshot(() => {
         setChangedFriday(true);
@@ -141,7 +142,7 @@ export const AuthContextProvider = ({
   // Saturday Change Listener
   useEffect(() => {
     const unsubscribe = firestore()
-      .collection("schedules")
+      .collection(schedule)
       .doc("saturday")
       .onSnapshot(() => {
         setChangedSaturday(true);
@@ -153,7 +154,7 @@ export const AuthContextProvider = ({
   // Sunday Change Listener
   useEffect(() => {
     const unsubscribe = firestore()
-      .collection("schedules")
+      .collection(schedule)
       .doc("sunday")
       .onSnapshot(() => {
         setChangedSunday(true);
@@ -167,7 +168,7 @@ export const AuthContextProvider = ({
     const unsubscribe = firestore()
       .collection(userSchedulesDoc)
       .doc(user.uid ? user.uid : "")
-      .collection("schedule")
+      .collection(schedule)
       .doc("friday")
       .onSnapshot(() => {
         setChangedCustomFriday(true);
@@ -181,7 +182,7 @@ export const AuthContextProvider = ({
     const unsubscribe = firestore()
       .collection(userSchedulesDoc)
       .doc(user.uid ? user.uid : "")
-      .collection("schedule")
+      .collection(schedule)
       .doc("saturday")
       .onSnapshot(() => {
         setChangedCustomSaturday(true);
@@ -195,7 +196,7 @@ export const AuthContextProvider = ({
     const unsubscribe = firestore()
       .collection(userSchedulesDoc)
       .doc(user.uid ? user.uid : "")
-      .collection("schedule")
+      .collection(schedule)
       .doc("sunday")
       .onSnapshot(() => {
         setChangedCustomSunday(true);
@@ -432,7 +433,7 @@ export const AuthContextProvider = ({
     await firestore()
       .collection(userSchedulesDoc)
       .doc(user.uid ? user.uid : "")
-      .collection("schedule")
+      .collection(schedule)
       .doc(day)
       .set(
         {
@@ -453,7 +454,7 @@ export const AuthContextProvider = ({
     await firestore()
       .collection(userSchedulesDoc)
       .doc(user.uid ? user.uid : "")
-      .collection("schedule")
+      .collection(schedule)
       .doc(day)
       .set(
         {
@@ -473,7 +474,7 @@ export const AuthContextProvider = ({
     const docSnap = await firestore()
       .collection(userSchedulesDoc)
       .doc(user.uid ? user.uid : "")
-      .collection("schedule")
+      .collection(schedule)
       .doc(day)
       .get();
 
@@ -484,7 +485,7 @@ export const AuthContextProvider = ({
         await firestore()
           .collection(userSchedulesDoc)
           .doc(user.uid ? user.uid : "")
-          .collection("schedule")
+          .collection(schedule)
           .doc(day)
           .set(
             {
@@ -502,7 +503,7 @@ export const AuthContextProvider = ({
     const docSnap = await firestore()
       .collection(userSchedulesDoc)
       .doc(user.uid ? user.uid : "")
-      .collection("schedule")
+      .collection(schedule)
       .doc(day)
       .get();
 
@@ -545,7 +546,7 @@ export const AuthContextProvider = ({
   const getSchedule = async function getSchedule(
     day: "friday" | "saturday" | "sunday"
   ) {
-    const docSnap = await firestore().collection("schedules").doc(day).get();
+    const docSnap = await firestore().collection(schedule).doc(day).get();
 
     switch (day) {
       case "friday":
@@ -651,19 +652,19 @@ export const AuthContextProvider = ({
     await firestore()
       .collection(userSchedulesDoc)
       .doc(user.uid)
-      .collection("schedule")
+      .collection(schedule)
       .doc("friday")
       .delete();
     await firestore()
       .collection(userSchedulesDoc)
       .doc(user.uid)
-      .collection("schedule")
+      .collection(schedule)
       .doc("saturday")
       .delete();
     await firestore()
       .collection(userSchedulesDoc)
       .doc(user.uid)
-      .collection("schedule")
+      .collection(schedule)
       .doc("sunday")
       .delete();
     await firestore().collection(userESportsDoc).doc(user.uid).delete();
