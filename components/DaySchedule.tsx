@@ -3,41 +3,59 @@ import { View, useThemeColor } from "./Themed";
 import Event from "./Event";
 import React from "react";
 
+// Event highlight types:
+// type EventType = "alert" | "meal" | "tech_talk" | "side_event" | "workshop";
 export function DaySchedule() {
   const tintColor = useThemeColor({}, "tint");
   return (
     <View style={styles.container}>
       <View style={styles.scheduleContainer}>
-        <View style={[styles.sidebar, { borderColor: tintColor }]}>
-          <View style={[styles.verticalLine, { backgroundColor: tintColor }]} />
-          <View style={[styles.dot, { backgroundColor: tintColor }]} />
-          <Event
-            title="Event Check-In"
-            type="alert"
-            location="Miller Learning Center"
-            time="5:00pm - 6:30pm"
-          />
-        </View>
-        <View style={[styles.sidebar, { borderColor: tintColor }]}>
-          <View style={[styles.verticalLine, { backgroundColor: tintColor }]} />
-          <View style={[styles.dot, { backgroundColor: tintColor }]} />
-          <Event
-            title="Breakfast"
-            type="meal"
-            location="Miller Learning Center"
-            time="5:00pm - 6:30pm"
-          />
-        </View>
-        <View style={[styles.sidebar, { borderColor: tintColor }]}>
-          <View style={[styles.verticalLine, { backgroundColor: tintColor }]} />
-          <View style={[styles.dot, { backgroundColor: tintColor }]} />
-          <Event
-            title="Intro to Google Cloud"
-            type="tech talk"
-            location="Miller Learning Center"
-            time="5:00pm - 6:30pm"
-          />
-        </View>
+        <Event
+          title="Event Check-In"
+          type="alert"
+          location="Miller Learning Center"
+          time="5:00pm - 6:30pm"
+        />
+        <Event
+          title="Breakfast"
+          type="meal"
+          location="Miller Learning Center"
+          time="5:00pm - 6:30pm"
+        />
+        <Event
+          title="Intro to Google Cloud"
+          type="tech_talk"
+          location="Miller Learning Center"
+          time="5:00pm - 6:30pm"
+        />
+      </View>
+    </View>
+  );
+}
+
+export function Sunday() {
+  const tintColor = useThemeColor({}, "tint");
+  return (
+    <View style={styles.container}>
+      <View style={styles.scheduleContainer}>
+        <Event
+          title="Event Check-In"
+          type="alert"
+          location="Miller Learning Center"
+          time="5:00pm - 6:30pm"
+        />
+        <Event
+          title="Breakfast"
+          type="meal"
+          location="Miller Learning Center"
+          time="5:00pm - 6:30pm"
+        />
+        <Event
+          title="Intro to Google Cloud"
+          type="tech_talk"
+          location="Miller Learning Center"
+          time="5:00pm - 6:30pm"
+        />
       </View>
     </View>
   );

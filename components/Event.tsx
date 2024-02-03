@@ -1,7 +1,7 @@
 import React from "react";
-import { View, Text, StyleSheet } from "react-native";
-
-type EventType = "alert" | "meal" | "tech talk" | "side event" | "workshop";
+import { Text, StyleSheet } from "react-native";
+import { View, useThemeColor } from "./Themed";
+type EventType = "alert" | "meal" | "tech_talk" | "side_event" | "workshop";
 
 interface EventProps {
   title: string;
@@ -11,15 +11,16 @@ interface EventProps {
 }
 
 const Event: React.FC<EventProps> = ({ title, type, location, time }) => {
+  const tintColor = useThemeColor({}, "tint");
   const getCardHeaderColor = (eventType: EventType) => {
     switch (eventType) {
       case "alert":
         return "#FF6C6C";
       case "meal":
         return "#FFB36C";
-      case "tech talk":
+      case "tech_talk":
         return "#6C95FF";
-      case "side event":
+      case "side_event":
         return "#D06CFF";
       case "workshop":
         return "#6BD15A";
@@ -31,13 +32,17 @@ const Event: React.FC<EventProps> = ({ title, type, location, time }) => {
   const cardHeaderColor = getCardHeaderColor(type);
 
   return (
-    <View style={styles.container}>
-      <View style={[styles.cardHeader, { backgroundColor: cardHeaderColor }]}>
-        <Text style={styles.title}>{title}</Text>
-      </View>
-      <View style={styles.cardBody}>
-        <Text style={styles.location}>{location}</Text>
-        <Text style={styles.time}>{time}</Text>
+    <View style={[styles.sidebar, { borderColor: tintColor }]}>
+      <View style={[styles.verticalLine, { backgroundColor: tintColor }]} />
+      <View style={[styles.dot, { backgroundColor: tintColor }]} />
+      <View style={styles.container}>
+        <View style={[styles.cardHeader, { backgroundColor: cardHeaderColor }]}>
+          <Text style={styles.title}>{title}</Text>
+        </View>
+        <View style={styles.cardBody}>
+          <Text style={styles.location}>{location}</Text>
+          <Text style={styles.time}>{time}</Text>
+        </View>
       </View>
     </View>
   );
@@ -89,6 +94,25 @@ const styles = StyleSheet.create({
   cardBody: {
     padding: 8,
     paddingTop: 10,
+  },
+  sidebar: {
+    flexDirection: "row",
+    alignItems: "center",
+    marginBottom: 0,
+    width: "100%",
+  },
+  dot: {
+    width: 10,
+    height: 10,
+    borderRadius: 5,
+    marginRight: 10,
+    marginLeft: 14.75,
+  },
+  verticalLine: {
+    position: "absolute",
+    height: "100%",
+    width: 1,
+    marginLeft: 19,
   },
 });
 
