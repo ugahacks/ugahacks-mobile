@@ -1,16 +1,23 @@
 import React from "react";
 import { Text, StyleSheet } from "react-native";
 import { View, useThemeColor } from "./Themed";
+import moment from "moment";
 type EventType = "alert" | "meal" | "tech_talk" | "side_event" | "workshop";
-
 interface EventProps {
   title: string;
   type: EventType;
   location: string;
-  time: string;
+  startTime: number;
+  endTime: number;
 }
 
-const Event: React.FC<EventProps> = ({ title, type, location, time }) => {
+const Event: React.FC<EventProps> = ({
+  title,
+  type,
+  location,
+  startTime,
+  endTime,
+}) => {
   const tintColor = useThemeColor({}, "tint");
   const getCardHeaderColor = (eventType: EventType) => {
     switch (eventType) {
@@ -29,6 +36,8 @@ const Event: React.FC<EventProps> = ({ title, type, location, time }) => {
     }
   };
 
+  const formattedStartTime = moment.unix(startTime).format("h:mm a");
+  const formattedEndTime = moment.unix(endTime).format("h:mm a");
   const cardHeaderColor = getCardHeaderColor(type);
 
   return (
@@ -41,7 +50,9 @@ const Event: React.FC<EventProps> = ({ title, type, location, time }) => {
         </View>
         <View style={styles.cardBody}>
           <Text style={styles.location}>{location}</Text>
-          <Text style={styles.time}>{time}</Text>
+          <Text style={styles.time}>
+            {formattedStartTime} - {formattedEndTime}
+          </Text>
         </View>
       </View>
     </View>

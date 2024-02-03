@@ -9,6 +9,10 @@ import React from "react";
 //TODO
 // grab this data from Firebase collection
 //
+
+const placeholderStartTime = 1609479530;
+const placeholderEndTime = 1609452300;
+
 export function DaySchedule() {
   const tintColor = useThemeColor({}, "tint");
   return (
@@ -18,24 +22,29 @@ export function DaySchedule() {
           title="Event Check-In"
           type="alert"
           location="Miller Learning Center"
-          time="5:00pm - 6:30pm"
+          startTime={placeholderStartTime}
+          endTime={placeholderEndTime}
         />
         <Event
           title="Breakfast"
           type="meal"
           location="Miller Learning Center"
-          time="5:00pm - 6:30pm"
+          startTime={placeholderStartTime}
+          endTime={placeholderEndTime}
         />
         <Event
           title="Intro to Google Cloud"
           type="tech_talk"
           location="Miller Learning Center"
-          time="5:00pm - 6:30pm"
+          startTime={placeholderStartTime}
+          endTime={placeholderEndTime}
         />
       </View>
     </View>
   );
 }
+
+function ScheduleFromFirebase() {}
 
 export function Friday() {
   const tintColor = useThemeColor({}, "tint");
@@ -46,19 +55,22 @@ export function Friday() {
           title="Event Check-In"
           type="alert"
           location="Miller Learning Center"
-          time="5:00pm - 6:30pm"
+          startTime={placeholderStartTime}
+          endTime={placeholderStartTime}
         />
         <Event
           title="Breakfast"
           type="meal"
           location="Miller Learning Center"
-          time="5:00pm - 6:30pm"
+          startTime={placeholderStartTime}
+          endTime={placeholderEndTime}
         />
         <Event
           title="Intro to Google Cloud"
           type="tech_talk"
           location="Miller Learning Center"
-          time="5:00pm - 6:30pm"
+          startTime={placeholderStartTime}
+          endTime={placeholderEndTime}
         />
       </View>
     </View>
@@ -74,19 +86,22 @@ export function Saturday() {
           title="Event Check-In"
           type="alert"
           location="Miller Learning Center"
-          time="5:00pm - 6:30pm"
+          startTime={placeholderStartTime}
+          endTime={placeholderEndTime}
         />
         <Event
           title="Breakfast"
           type="meal"
           location="Miller Learning Center"
-          time="5:00pm - 6:30pm"
+          startTime={placeholderStartTime}
+          endTime={placeholderEndTime}
         />
         <Event
           title="Intro to Google Cloud"
           type="tech_talk"
           location="Miller Learning Center"
-          time="5:00pm - 6:30pm"
+          startTime={placeholderStartTime}
+          endTime={placeholderEndTime}
         />
       </View>
     </View>
@@ -102,19 +117,22 @@ export function Sunday() {
           title="Event Check-In"
           type="alert"
           location="Miller Learning Center"
-          time="5:00pm - 6:30pm"
+          startTime={placeholderStartTime}
+          endTime={placeholderEndTime}
         />
         <Event
           title="Breakfast"
           type="meal"
           location="Miller Learning Center"
-          time="5:00pm - 6:30pm"
+          startTime={placeholderStartTime}
+          endTime={placeholderEndTime}
         />
         <Event
           title="Intro to Google Cloud"
           type="tech_talk"
           location="Miller Learning Center"
-          time="5:00pm - 6:30pm"
+          startTime={placeholderStartTime}
+          endTime={placeholderEndTime}
         />
       </View>
     </View>
