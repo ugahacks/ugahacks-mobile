@@ -1,0 +1,22 @@
+{
+    "schedule-uh9": {
+        "events": {
+            "0": {
+                "description": "Check-in to UGA Hacks 8!",
+                "endTime": "6:30 PM",
+                "location": "Instructional Plaza",
+                "name": "Check-In",
+                "startTime": "5:30 PM",
+                "tag": "important"
+            },
+            "1": {
+                "description": "New Event Description",
+                "endTime": "New Event End Time",
+                "location": "New Event Location",
+                "name": "New Event Name",
+                "startTime": "New Event Start Time",
+                "tag": "New Event Tag"
+            }
+        }
+    }
+}
