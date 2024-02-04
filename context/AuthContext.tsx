@@ -543,7 +543,32 @@ export const AuthContextProvider = ({
     }
   };
 
-  const getSchedule = async function getSchedule(
+  const getSchedule = async function getSchedule() {
+    const scheduleSnap = await firestore()
+      .collection("schedule-uh9")
+      .doc("events")
+      .get();
+    const eventIds = scheduleSnap.data()?.events;
+
+    if (!eventIds) {
+      setSchedule([]);
+      return;
+    }
+    const scheduleData = await Promise.all(
+      eventIds.map(async (id) => {
+        const docSnap = await firestore().collection("events").doc(id).get();
+        return docSnap.data();
+      })
+    );
+    const sortedSchedule = scheduleData.sort(
+      (time1: { startTime: number }, time2: { startTime: number }) => {
+        return time1.startTime - time2.startTime;
+      }
+    );
+    setSchedule(sortedSchedule);
+  };
+
+  const getSchedule_legacy = async function getSchedule(
     day: "friday" | "saturday" | "sunday"
   ) {
     const docSnap = await firestore().collection(schedule).doc(day).get();
@@ -566,6 +591,7 @@ export const AuthContextProvider = ({
           setScheduleFriday([]);
           return;
         }
+
         setScheduleFriday(sortedFridaySchedule);
         return;
 
