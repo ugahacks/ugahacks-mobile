@@ -49,6 +49,7 @@ export const AuthContextProvider = ({
   const [scheduleFriday, setScheduleFriday] = useState([]);
   const [scheduleSaturday, setScheduleSaturday] = useState([]);
   const [scheduleSunday, setScheduleSunday] = useState([]);
+  const [scheduleTotal, setScheduleTotal] = useState([]);
   const [myScheduleFriday, setMyScheduleFriday] = useState({});
   const [myScheduleSaturday, setMyScheduleSaturday] = useState({});
   const [myScheduleSunday, setMyScheduleSunday] = useState({});
@@ -77,7 +78,7 @@ export const AuthContextProvider = ({
 
   // Change this variable for prod or dev
   const isStage = false;
-  let schedule = "schedules";
+  let schedule = "schedule-uh9";
   let userDoc = "users";
   let userSchedulesDoc = "schedules-users";
   let userESportsDoc = "user-e-sports-details";
@@ -551,11 +552,11 @@ export const AuthContextProvider = ({
     const eventIds = scheduleSnap.data()?.events;
 
     if (!eventIds) {
-      setSchedule([]);
+      setScheduleTotal([]);
       return;
     }
     const scheduleData = await Promise.all(
-      eventIds.map(async (id) => {
+      eventIds.map(async (id: string) => {
         const docSnap = await firestore().collection("events").doc(id).get();
         return docSnap.data();
       })
@@ -565,7 +566,38 @@ export const AuthContextProvider = ({
         return time1.startTime - time2.startTime;
       }
     );
-    setSchedule(sortedSchedule);
+    setScheduleTotal(sortedSchedule);
+  };
+
+  const useSchedule = () => {
+    const [scheduleTotal, setScheduleTotal] = useState([]);
+    useEffect(() => {
+      const unsubscribe = firestore()
+        .collection("schedule-uh9")
+        .doc("events")
+        .onSnapshot(async (scheduleSnap) => {
+          const eventIds = scheduleSnap.data()?.events;
+          if (!eventIds) {
+            setScheduleTotal([]);
+            return;
+          }
+          const scheduleData = await Promise.all(
+            eventIds.map(async (id: string) => {
+              const docSnap = await firestore()
+                .collection("events")
+                .doc(id)
+                .get();
+              return docSnap.data();
+            })
+          );
+          const sortedSchedule = scheduleData.sort((time1, time2) => {
+            return time1.startTime - time2.startTime;
+          });
+          setScheduleTotal(sortedSchedule);
+        });
+      return () => unsubscribe();
+    }, []);
+    return scheduleTotal;
   };
 
   const getSchedule_legacy = async function getSchedule(
