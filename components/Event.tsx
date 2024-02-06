@@ -6,6 +6,7 @@ type EventType = "alert" | "meal" | "tech_talk" | "side_event" | "workshop";
 interface EventProps {
   title: string;
   type: EventType;
+  description: string;
   location: string;
   startTime: number;
   endTime: number;
@@ -15,6 +16,7 @@ const Event: React.FC<EventProps> = ({
   title,
   type,
   location,
+  description,
   startTime,
   endTime,
 }) => {
