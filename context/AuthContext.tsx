@@ -528,7 +528,7 @@ export const AuthContextProvider = ({
     }
   };
 
-  const getSchedule = async function getSchedule() {
+  /*  const getSchedule = async function getSchedule() {
     const scheduleSnap = await firestore()
       .collection("schedule-uh9")
       .doc("events")
@@ -552,8 +552,9 @@ export const AuthContextProvider = ({
     );
     setScheduleTotal(sortedSchedule);
   };
+  */
 
-  const useSchedule = () => {
+  const getSchedule = () => {
     const [scheduleTotal, setScheduleTotal] = useState([]);
     useEffect(() => {
       const unsubscribe = firestore()
