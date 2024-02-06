@@ -60,22 +60,6 @@ export const AuthContextProvider = ({
   const [changedCustomSaturday, setChangedCustomSaturday] = useState(false);
   const [changedCustomSunday, setChangedCustomSunday] = useState(false);
 
-  // Stage Environment
-  // const userRefStage = collection(db, "users-stage");
-  // const eSportsRefStage = collection(db, "user-e-sports-details-stage");
-  // const registerRefStage = collection(db, "user-registration-details-stage");
-  // const workshopRefStage = collection(db, "user-workshop-details-stage");
-
-  // // Prod Environment
-  // const userRef = collection(db, "users");
-  // const eSportsRef = collection(db, "user-e-sports-details");
-  // const registerRef = collection(db, "user-registration-details");
-  // const workshopRef = collection(db, "user-workshop-details");
-
-  // function onAuthStateChanged(user: React.SetStateAction<UserType>) {
-  //   setUser(user);
-  // }
-
   // Change this variable for prod or dev
   const isStage = false;
   let schedule = "schedule-uh9";
