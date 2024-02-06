@@ -40,7 +40,16 @@ yarn-error.*
 expo-env.d.ts
 # @end expo-cli
 ios
-android/app/src/main
-android/gradle/wrapper
-android
+# android/app/src/main
+#android/gradle/wrapper
+# android
 .env
+android/app/src/main/res
+android/app/src/main
+android/app/src/debug
+android/app/debug.keystore
+android/app/google-services.json
+android/app/proguard-rules.pro
+android/gradle/wrapper
+android/gradlew
+android/gradlew.bat
