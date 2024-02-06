@@ -51,33 +51,7 @@ export function Friday() {
   useEffect(() => {
     getSchedule("friday");
   }, []);
-  const tintColor = useThemeColor({}, "tint");
   return scheduleFriday;
-  //    <View style={styles.container}>
-  //      <View style={styles.scheduleContainer}>
-  //        <Event
-  //          title="Event Check-In"
-  //          type="alert"
-  //          location="Miller Learning Center"
-  //          startTime={placeholderStartTime}
-  //          endTime={placeholderStartTime}
-  //        />
-  //        <Event
-  //          title="Breakfast"
-  //          type="meal"
-  //          location="Miller Learning Center"
-  //          startTime={placeholderStartTime}
-  //          endTime={placeholderEndTime}
-  //        />
-  //        <Event
-  //          title="Intro to Google Cloud"
-  //          type="tech_talk"
-  //          location="Miller Learning Center"
-  //          startTime={placeholderStartTime}
-  //          endTime={placeholderEndTime}
-  //        />
-  //      </View>
-  //    </View>
 }
 
 export function Saturday() {
