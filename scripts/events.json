@@ -2,20 +2,124 @@
     "schedule-uh9": {
         "events": {
             "0": {
-                "description": "Check-in to UGA Hacks 8!",
-                "endTime": "6:30 PM",
-                "location": "Instructional Plaza",
-                "name": "Check-In",
-                "startTime": "5:30 PM",
-                "tag": "important"
+                "description": "Welcome speech and introduction to the hackathon.",
+                "endTime": "1707529018",
+                "location": "Main Auditorium",
+                "name": "Opening Ceremony",
+                "startTime": "1707525418",
+                "tag": "alert"
             },
             "1": {
-                "description": "New Event Description",
-                "endTime": "New Event End Time",
-                "location": "New Event Location",
-                "name": "New Event Name",
-                "startTime": "New Event Start Time",
-                "tag": "New Event Tag"
+                "description": "Enjoy a variety of sandwiches and refreshments.",
+                "endTime": "1707536218",
+                "location": "Cafeteria",
+                "name": "Welcome Dinner",
+                "startTime": "1707532618",
+                "tag": "meal"
+            },
+            "2": {
+                "description": "Learn about the latest web development frameworks.",
+                "endTime": "1707543418",
+                "location": "Room 101",
+                "name": "Web Dev Tech Talk",
+                "startTime": "1707539818",
+                "tag": "tech_talk"
+            },
+            "3": {
+                "description": "A casual meet and greet with fellow participants.",
+                "endTime": "1707550618",
+                "location": "Lounge Area",
+                "name": "Ice Breaker Session",
+                "startTime": "1707547018",
+                "tag": "side_event"
+            },
+            "4": {
+                "description": "Hands-on workshop on building IoT devices.",
+                "endTime": "1707557818",
+                "location": "Lab 202",
+                "name": "IoT Workshop",
+                "startTime": "1707554218",
+                "tag": "workshop"
+            },
+            "5": {
+                "description": "Start your day with a healthy breakfast.",
+                "endTime": "1707612618",
+                "location": "Cafeteria",
+                "name": "Morning Breakfast",
+                "startTime": "1707609018",
+                "tag": "meal"
+            },
+            "6": {
+                "description": "Dive into the world of artificial intelligence.",
+                "endTime": "1707619818",
+                "location": "Room 303",
+                "name": "AI Tech Talk",
+                "startTime": "1707616218",
+                "tag": "tech_talk"
+            },
+            "7": {
+                "description": "A quick break with snacks and drinks.",
+                "endTime": "1707627018",
+                "location": "Chill Zone",
+                "name": "Afternoon Snack Break",
+                "startTime": "1707623418",
+                "tag": "meal"
+            },
+            "8": {
+                "description": "Collaborate and brainstorm ideas for your project.",
+                "endTime": "1707634218",
+                "location": "Collaboration Space",
+                "name": "Team Building Activity",
+                "startTime": "1707630618",
+                "tag": "side_event"
+            },
+            "9": {
+                "description": "Learn how to deploy your apps with Docker.",
+                "endTime": "1707641418",
+                "location": "Room 404",
+                "name": "Docker Deployment Workshop",
+                "startTime": "1707637818",
+                "tag": "workshop"
+            },
+            "10": {
+                "description": "Get energized with a hearty breakfast.",
+                "endTime": "1707699818",
+                "location": "Cafeteria",
+                "name": "Sunday Breakfast",
+                "startTime": "1707696218",
+                "tag": "meal"
+            },
+            "11": {
+                "description": "Explore the future of virtual reality.",
+                "endTime": "1707707018",
+                "location": "Room 505",
+                "name": "VR Tech Talk",
+                "startTime": "1707703418",
+                "tag": "tech_talk"
+            },
+            "12": {
+                "description": "Relax and enjoy some light refreshments.",
+                "endTime": "1707714218",
+                "location": "Garden Area",
+                "name": "Tea Time",
+                "startTime": "1707710618",
+                "tag": "meal"
+            },
+            "13": {
+                "description": "A fun quiz to test your tech knowledge.",
+                "endTime": "1707721418",
+                "location": "Main Auditorium",
+                "name": "Tech Trivia Challenge",
+                "startTime": "1707717818",
+                "tag": "side_event"
+            },
+            "14": {
+                "description": "Create your first mobile app with Flutter.",
+                "endTime": "1707728618",
+                "location": "Lab 606",
+                "name": "Flutter App Development Workshop",
+                "startTime": "1707725018",
+                "tag": "workshop"
             }
         }
     }
