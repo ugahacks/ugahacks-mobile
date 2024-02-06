@@ -537,7 +537,7 @@ export const AuthContextProvider = ({
   const getSchedule = useCallback(async function getSchedule() {
     try {
       const scheduleSnap = await firestore()
-        .collection("schedule-uh9-stage")
+        .collection(schedule)
         .doc("events")
         .get();
       const eventIds = scheduleSnap.data()?.events;
