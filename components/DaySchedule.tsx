@@ -1,12 +1,11 @@
 import { StyleSheet } from "react-native";
 import { View, useThemeColor } from "./Themed";
-import Event from "./Event";
+import { Event, EventProps } from "./Event";
 import React from "react";
 import { useAuth } from "../context/AuthContext";
 import { useEffect } from "react";
 
 // Event highlight types: type EventType = "alert" | "meal" | "tech_talk" | "side_event" | "workshop";
-
 //TODO
 // grab this data from Firebase collection
 //
@@ -14,7 +13,7 @@ import { useEffect } from "react";
 const placeholderStartTime = 1609479530;
 const placeholderEndTime = 1609452300;
 
-export function DaySchedule() {
+/*export function DaySchedule() {
   const tintColor = useThemeColor({}, "tint");
   return (
     <View style={styles.container}>
@@ -23,6 +22,7 @@ export function DaySchedule() {
           title="Event Check-In"
           type="alert"
           location="Miller Learning Center"
+          description="description"
           startTime={placeholderStartTime}
           endTime={placeholderEndTime}
         />
@@ -30,6 +30,7 @@ export function DaySchedule() {
           title="Breakfast"
           type="meal"
           location="Miller Learning Center"
+          description="description"
           startTime={placeholderStartTime}
           endTime={placeholderEndTime}
         />
@@ -37,6 +38,7 @@ export function DaySchedule() {
           title="Intro to Google Cloud"
           type="tech_talk"
           location="Miller Learning Center"
+          description="description"
           startTime={placeholderStartTime}
           endTime={placeholderEndTime}
         />
@@ -44,7 +46,7 @@ export function DaySchedule() {
     </View>
   );
 }
-
+*/
 /*export function Friday() {
   const { scheduleFriday } = useAuth();
 
@@ -54,96 +56,89 @@ export function DaySchedule() {
   return scheduleFriday;
 }
 */
-export function Friday() {
-  const { getSchedule } = useAuth();
-  const schedule = getSchedule(); // This is where you use the hook
+
+export function Friday({ schedule }) {
   // Filter events to only include those that occur on this day
-  const fridayEvents = schedule.filter((event) => {
+  const fridayEvents = schedule.filter((event: EventProps) => {
     const eventDate = new Date(event.startTime * 1000); // Convert Unix timestamp to milliseconds
-    return eventDate.getDay() === 6; // Check if the day is Saturday (6)
+    return eventDate.getDay() === 5; // Check if the day is Friday (5)
   });
   return (
     <View style={styles.container}>
       <View style={styles.scheduleContainer}>
         {fridayEvents.length > 0 ? (
-          fridayEvents.map((event, index) => (
+          fridayEvents.map((event: EventProps, index: number) => (
             <Event
               key={index} // Ideally, use a unique identifier from the event object
               title={event.title}
               type={event.type}
+              description={event.description}
               location={event.location}
               startTime={event.startTime}
               endTime={event.endTime}
             />
           ))
         ) : (
-          <View>
-            {/* Display a message or placeholder when there are no events */}
-            No events scheduled for this day.
-          </View>
+          <View></View>
         )}
       </View>
     </View>
   );
 }
 
-export function Saturday() {
-  const tintColor = useThemeColor({}, "tint");
+export function Saturday({ schedule }) {
+  // Filter events to only include those that occur on this day
+  const fridayEvents = schedule.filter((event: EventProps) => {
+    const eventDate = new Date(event.startTime * 1000); // Convert Unix timestamp to milliseconds
+    return eventDate.getDay() === 5; // Check if the day is Friday (5)
+  });
   return (
     <View style={styles.container}>
       <View style={styles.scheduleContainer}>
-        <Event
-          title="Event Check-In"
-          type="alert"
-          location="Miller Learning Center"
-          startTime={placeholderStartTime}
-          endTime={placeholderEndTime}
-        />
-        <Event
-          title="Breakfast"
-          type="meal"
-          location="Miller Learning Center"
-          startTime={placeholderStartTime}
-          endTime={placeholderEndTime}
-        />
-        <Event
-          title="Intro to Google Cloud"
-          type="tech_talk"
-          location="Miller Learning Center"
-          startTime={placeholderStartTime}
-          endTime={placeholderEndTime}
-        />
+        {fridayEvents.length > 0 ? (
+          fridayEvents.map((event: EventProps, index: number) => (
+            <Event
+              key={index} // Ideally, use a unique identifier from the event object
+              title={event.title}
+              type={event.type}
+              description={event.description}
+              location={event.location}
+              startTime={event.startTime}
+              endTime={event.endTime}
+            />
+          ))
+        ) : (
+          <View></View>
+        )}
       </View>
     </View>
   );
 }
 
-export function Sunday() {
-  const tintColor = useThemeColor({}, "tint");
+export function Sunday({ schedule }) {
+  // Filter events to only include those that occur on this day
+  const fridayEvents = schedule.filter((event: EventProps) => {
+    const eventDate = new Date(event.startTime * 1000); // Convert Unix timestamp to milliseconds
+    return eventDate.getDay() === 5; // Check if the day is Friday (5)
+  });
   return (
     <View style={styles.container}>
       <View style={styles.scheduleContainer}>
-        <Event
-          title="Event Check-In"
-          type="alert"
-          location="Miller Learning Center"
-          startTime={placeholderStartTime}
-          endTime={placeholderEndTime}
-        />
-        <Event
-          title="Breakfast"
-          type="meal"
-          location="Miller Learning Center"
-          startTime={placeholderStartTime}
-          endTime={placeholderEndTime}
-        />
-        <Event
-          title="Intro to Google Cloud"
-          type="tech_talk"
-          location="Miller Learning Center"
-          startTime={placeholderStartTime}
-          endTime={placeholderEndTime}
-        />
+        {fridayEvents.length > 0 ? (
+          fridayEvents.map((event: EventProps, index: number) => (
+            <Event
+              key={index} // Ideally, use a unique identifier from the event object
+              title={event.title}
+              type={event.type}
+              description={event.description}
+              location={event.location}
+              startTime={event.startTime}
+              endTime={event.endTime}
+            />
+          ))
+        ) : (
+          <View></View>
+        )}
       </View>
     </View>
   );
@@ -202,5 +197,3 @@ const styles = StyleSheet.create({
     marginLeft: 19,
   },
 });
-
-export default DaySchedule;

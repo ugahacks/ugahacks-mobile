@@ -528,32 +528,6 @@ export const AuthContextProvider = ({
     }
   };
 
-  /*  const getSchedule = async function getSchedule() {
-    const scheduleSnap = await firestore()
-      .collection("schedule-uh9")
-      .doc("events")
-      .get();
-    const eventIds = scheduleSnap.data()?.events;
-
-    if (!eventIds) {
-      setScheduleTotal([]);
-      return;
-    }
-    const scheduleData = await Promise.all(
-      eventIds.map(async (id: string) => {
-        const docSnap = await firestore().collection("events").doc(id).get();
-        return docSnap.data();
-      })
-    );
-    const sortedSchedule = scheduleData.sort(
-      (time1: { startTime: number }, time2: { startTime: number }) => {
-        return time1.startTime - time2.startTime;
-      }
-    );
-    setScheduleTotal(sortedSchedule);
-  };
-  */
-
   const getSchedule = () => {
     const [scheduleTotal, setScheduleTotal] = useState([]);
     useEffect(() => {

@@ -3,7 +3,7 @@ import { Text, StyleSheet } from "react-native";
 import { View, useThemeColor } from "./Themed";
 import moment from "moment";
 type EventType = "alert" | "meal" | "tech_talk" | "side_event" | "workshop";
-interface EventProps {
+export interface EventProps {
   title: string;
   type: EventType;
   description: string;
@@ -12,7 +12,7 @@ interface EventProps {
   endTime: number;
 }
 
-const Event: React.FC<EventProps> = ({
+export const Event: React.FC<EventProps> = ({
   title,
   type,
   location,
