@@ -1,19 +1,27 @@
 import { Friday, Saturday, Sunday } from "../../components/DaySchedule";
 import React, { useEffect, useState } from "react";
 import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
-import { NavigationContainer } from "@react-navigation/native";
+import { NavigationContainer, useIsFocused } from "@react-navigation/native";
 import { useAuth } from "../../context/AuthContext";
 
 export default function Schedule() {
   const Tab = createMaterialTopTabNavigator();
-  const { getSchedule } = useAuth();
+  const { getSchedule, scheduleTotal } = useAuth(); // Destructure scheduleTotal from useAuth
   const [sortedSchedule, setSortedSchedule] = useState([]);
+  const isFocused = useIsFocused(); // Hook to determine if the screen is focused
   useEffect(() => {
-    const schedule = getSchedule();
-    // Sort the schedule by startTime
-    const sorted = schedule.sort((a, b) => a.startTime - b.startTime);
-    setSortedSchedule(sorted);
-  }, [getSchedule]);
+    // Only fetch the schedule when the screen is focused
+    if (isFocused) {
+      getSchedule();
+    }
+  }, [getSchedule, isFocused]);
+  // Use the sorted schedule data directly from the state provided by useAuth
+  useEffect(() => {
+    if (scheduleTotal) {
+      setSortedSchedule(scheduleTotal);
+    }
+  }, [scheduleTotal]);
+
   return (
     <NavigationContainer independent={true}>
       <Tab.Navigator>

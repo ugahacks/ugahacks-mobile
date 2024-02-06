@@ -1,4 +1,10 @@
-import React, { createContext, useContext, useEffect, useState } from "react";
+import React, {
+  createContext,
+  useCallback,
+  useContext,
+  useEffect,
+  useState,
+} from "react";
 import auth from "@react-native-firebase/auth";
 import firestore from "@react-native-firebase/firestore";
 import { GoogleSignin } from "@react-native-google-signin/google-signin";
@@ -61,7 +67,7 @@ export const AuthContextProvider = ({
   const [changedCustomSunday, setChangedCustomSunday] = useState(false);
 
   // Change this variable for prod or dev
-  const isStage = false;
+  const isStage = true;
   let schedule = "schedule-uh9";
   let userDoc = "users";
   let userSchedulesDoc = "schedules-users";
@@ -528,37 +534,40 @@ export const AuthContextProvider = ({
     }
   };
 
-  const getSchedule = () => {
-    const [scheduleTotal, setScheduleTotal] = useState([]);
-    useEffect(() => {
-      const unsubscribe = firestore()
-        .collection("schedule-uh9")
+  const getSchedule = useCallback(async function getSchedule() {
+    try {
+      const scheduleSnap = await firestore()
+        .collection("schedule-uh9-stage")
         .doc("events")
-        .onSnapshot(async (scheduleSnap) => {
-          const eventIds = scheduleSnap.data()?.events;
-          if (!eventIds) {
-            setScheduleTotal([]);
-            return;
-          }
-          const scheduleData = await Promise.all(
-            eventIds.map(async (id: string) => {
-              const docSnap = await firestore()
-                .collection("events")
-                .doc(id)
-                .get();
-              return docSnap.data();
-            })
-          );
-          const sortedSchedule = scheduleData.sort((time1, time2) => {
-            return time1.startTime - time2.startTime;
-          });
-          setScheduleTotal(sortedSchedule);
-        });
-      return () => unsubscribe();
-    }, []);
-    return scheduleTotal;
-  };
+        .get();
+      const eventIds = scheduleSnap.data()?.events;
+      console.log("EventIds:", eventIds);
+      if (!eventIds) {
+        setScheduleTotal([]);
+        console.log("No event IDs");
+        return;
+      }
+      const scheduleData = await Promise.all(
+        eventIds.map(async (id: string) => {
+          const docSnap = await firestore().collection("events").doc(id).get();
+          return docSnap.data();
+        })
+      );
+      const sortedSchedule = scheduleData.sort((a, b) => {
+        // Assuming startTime is a timestamp, we need to compare the seconds or milliseconds
+        return (
+          (a.startTime.seconds || a.startTime) -
+          (b.startTime.seconds || b.startTime)
+        );
+      });
+      setScheduleTotal(sortedSchedule);
+    } catch (error) {
+      console.error("Error fetching schedule:", error);
+      // Handle the error appropriately
+    }
+  }, []);
 
+  /*
   const getSchedule_legacy = async function getSchedule(
     day: "friday" | "saturday" | "sunday"
   ) {
@@ -628,6 +637,7 @@ export const AuthContextProvider = ({
         return;
     }
   };
+  */
 
   const resetUserInformation = () => {
     setUserInfo({
