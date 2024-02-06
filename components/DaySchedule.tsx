@@ -45,13 +45,46 @@ export function DaySchedule() {
   );
 }
 
-export function Friday() {
-  const { getSchedule, scheduleFriday } = useAuth();
+/*export function Friday() {
+  const { scheduleFriday } = useAuth();
 
   useEffect(() => {
-    getSchedule("friday");
+      scheduleFriday()
   }, []);
   return scheduleFriday;
+}
+*/
+export function Friday() {
+  const { getSchedule } = useAuth();
+  const schedule = getSchedule(); // This is where you use the hook
+  // Filter events to only include those that occur on this day
+  const fridayEvents = schedule.filter((event) => {
+    const eventDate = new Date(event.startTime * 1000); // Convert Unix timestamp to milliseconds
+    return eventDate.getDay() === 6; // Check if the day is Saturday (6)
+  });
+  return (
+    <View style={styles.container}>
+      <View style={styles.scheduleContainer}>
+        {fridayEvents.length > 0 ? (
+          fridayEvents.map((event, index) => (
+            <Event
+              key={index} // Ideally, use a unique identifier from the event object
+              title={event.title}
+              type={event.type}
+              location={event.location}
+              startTime={event.startTime}
+              endTime={event.endTime}
+            />
+          ))
+        ) : (
+          <View>
+            {/* Display a message or placeholder when there are no events */}
+            No events scheduled for this day.
+          </View>
+        )}
+      </View>
+    </View>
+  );
 }
 
 export function Saturday() {
