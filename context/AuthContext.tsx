@@ -547,12 +547,8 @@ export const AuthContextProvider = ({
         console.log("No event IDs");
         return;
       }
-      const scheduleData = await Promise.all(
-        eventIds.map(async (id: string) => {
-          const docSnap = await firestore().collection("events").doc(id).get();
-          return docSnap.data();
-        })
-      );
+      // Convert the eventIds object to an array of event data
+      const scheduleData = Object.values(eventIds);
       const sortedSchedule = scheduleData.sort((a, b) => {
         // Assuming startTime is a timestamp, we need to compare the seconds or milliseconds
         return (
