@@ -540,7 +540,7 @@ export const AuthContextProvider = ({
         .collection(schedule)
         .doc("events")
         .get();
-      const eventIds = scheduleSnap.data()?.events;
+      const eventIds = scheduleSnap.data();
       console.log("EventIds:", eventIds);
       if (!eventIds) {
         setScheduleTotal([]);
