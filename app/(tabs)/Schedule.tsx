@@ -14,13 +14,16 @@ export default function Schedule() {
     if (isFocused) {
       getSchedule();
     }
-  }, [getSchedule, isFocused]);
+  }, [isFocused, getSchedule]);
   // Use the sorted schedule data directly from the state provided by useAuth
   useEffect(() => {
     if (scheduleTotal) {
       setSortedSchedule(scheduleTotal);
     }
   }, [scheduleTotal]);
+  useEffect(() => {
+    console.log("Sorted schedule", sortedSchedule);
+  }, [sortedSchedule]);
 
   return (
     <NavigationContainer independent={true}>
