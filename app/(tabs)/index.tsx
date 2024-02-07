@@ -2,7 +2,8 @@ import { StyleSheet } from "react-native";
 import { Text, View } from "../../components/Themed";
 import { router } from "expo-router";
 import { useAuth } from "../../context/AuthContext";
-import { useEffect, useState } from "react";
+import React from "react";
+import { useEffect } from "react";
 
 export default function Home() {
   const {

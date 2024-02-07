@@ -317,7 +317,7 @@ export const AuthContextProvider = ({
 
       setUserInformation(google_user.uid);
     } catch (err: any) {
-      console.log(err);
+      console.error(err);
     }
   };
 
