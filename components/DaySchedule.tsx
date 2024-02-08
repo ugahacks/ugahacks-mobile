@@ -152,7 +152,6 @@ export function Sunday({ schedule }) {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
     alignItems: "center",
   },
   title: {
@@ -183,7 +182,6 @@ const styles = StyleSheet.create({
     paddingTop: 20,
     width: "100%",
     alignItems: "flex-start",
-    height: "100%",
   },
   sidebar: {
     flexDirection: "row",
