@@ -4,8 +4,8 @@ import { View, useThemeColor } from "./Themed";
 import moment from "moment";
 type EventType = "alert" | "meal" | "tech_talk" | "side_event" | "workshop";
 export interface EventProps {
-  title: string;
-  type: EventType;
+  name: string;
+  tag: EventType;
   description: string;
   location: string;
   startTime: number;
@@ -13,8 +13,8 @@ export interface EventProps {
 }
 
 export const Event: React.FC<EventProps> = ({
-  title,
-  type,
+  name,
+  tag,
   location,
   description,
   startTime,
@@ -40,7 +40,7 @@ export const Event: React.FC<EventProps> = ({
 
   const formattedStartTime = moment.unix(startTime).format("h:mm a");
   const formattedEndTime = moment.unix(endTime).format("h:mm a");
-  const cardHeaderColor = getCardHeaderColor(type);
+  const cardHeaderColor = getCardHeaderColor(tag);
 
   return (
     <View style={[styles.sidebar, { borderColor: tintColor }]}>
@@ -48,7 +48,7 @@ export const Event: React.FC<EventProps> = ({
       <View style={[styles.dot, { backgroundColor: tintColor }]} />
       <View style={styles.container}>
         <View style={[styles.cardHeader, { backgroundColor: cardHeaderColor }]}>
-          <Text style={styles.title}>{title}</Text>
+          <Text style={styles.title}>{name}</Text>
         </View>
         <View style={styles.cardBody}>
           <Text style={styles.location}>{location}</Text>
