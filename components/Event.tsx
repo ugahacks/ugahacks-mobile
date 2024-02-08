@@ -1,5 +1,11 @@
-import React from "react";
-import { Text, StyleSheet } from "react-native";
+import React, { useState } from "react";
+import {
+  Modal,
+  TouchableWithoutFeedback,
+  TouchableOpacity,
+  Text,
+  StyleSheet,
+} from "react-native";
 import { View, useThemeColor } from "./Themed";
 import moment from "moment";
 type EventType = "alert" | "meal" | "tech_talk" | "side_event" | "workshop";
@@ -38,26 +44,68 @@ export const Event: React.FC<EventProps> = ({
     }
   };
 
+  const [modalVisible, setModalVisible] = useState(false);
   const formattedStartTime = moment.unix(startTime).format("h:mm a");
   const formattedEndTime = moment.unix(endTime).format("h:mm a");
   const cardHeaderColor = getCardHeaderColor(tag);
 
+  const toggleModal = () => {
+    setModalVisible(!modalVisible);
+  };
+
   return (
-    <View style={[styles.sidebar, { borderColor: tintColor }]}>
-      <View style={[styles.verticalLine, { backgroundColor: tintColor }]} />
-      <View style={[styles.dot, { backgroundColor: tintColor }]} />
-      <View style={styles.container}>
-        <View style={[styles.cardHeader, { backgroundColor: cardHeaderColor }]}>
-          <Text style={styles.title}>{name}</Text>
+    <>
+      <TouchableOpacity
+        onPress={toggleModal}
+        style={[styles.sidebar, { borderColor: tintColor }]}
+      >
+        {/* ... (rest of your existing event item code) */}
+        <View style={[styles.sidebar, { borderColor: tintColor }]}>
+          <View style={[styles.verticalLine, { backgroundColor: tintColor }]} />
+          <View style={[styles.dot, { backgroundColor: tintColor }]} />
+          <View style={styles.container}>
+            <View
+              style={[styles.cardHeader, { backgroundColor: cardHeaderColor }]}
+            >
+              <Text style={styles.title}>{name}</Text>
+            </View>
+            <View style={styles.cardBody}>
+              <Text style={styles.location}>{location}</Text>
+              <Text style={styles.time}>
+                {formattedStartTime} - {formattedEndTime}
+              </Text>
+            </View>
+          </View>
         </View>
-        <View style={styles.cardBody}>
-          <Text style={styles.location}>{location}</Text>
-          <Text style={styles.time}>
-            {formattedStartTime} - {formattedEndTime}
-          </Text>
-        </View>
-      </View>
-    </View>
+      </TouchableOpacity>
+      <Modal
+        animationType="slide"
+        transparent={true}
+        visible={modalVisible}
+        onRequestClose={toggleModal}
+      >
+        <TouchableWithoutFeedback onPress={toggleModal}>
+          <View style={styles.modalOverlay}>
+            <TouchableWithoutFeedback onPress={toggleModal}>
+              <View style={styles.modalView}>
+                <Text style={styles.modalTitle}>{name}</Text>
+                <Text style={styles.modalLocation}>{location}</Text>
+                <Text style={styles.modalTime}>
+                  {formattedStartTime} - {formattedEndTime}
+                </Text>
+                <Text style={styles.modalDescription}>{description}</Text>
+                <TouchableOpacity
+                  style={styles.buttonClose}
+                  onPress={toggleModal}
+                >
+                  <Text style={styles.textStyle}>Close</Text>
+                </TouchableOpacity>
+              </View>
+            </TouchableWithoutFeedback>
+          </View>
+        </TouchableWithoutFeedback>
+      </Modal>
+    </>
   );
 };
 
@@ -126,6 +174,62 @@ const styles = StyleSheet.create({
     height: "100%",
     width: 1,
     marginLeft: 19,
+  },
+  modalOverlay: {
+    flex: 1,
+    justifyContent: "flex-end", // Align the modal content to the bottom
+    backgroundColor: "rgba(0, 0, 0, 0.5)", // Semi-transparent background
+  },
+  modalContentContainer: {
+    backgroundColor: "white",
+    padding: 20,
+    alignItems: "flex-start", // Align items to the left
+  },
+  modalView: {
+    backgroundColor: "white",
+    borderRadius: 5,
+    padding: 20,
+    alignItems: "flex-start", // Align items to the left
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 4,
+    elevation: 5,
+    width: "100%", // Take up the full width of the screen
+    height: "50%", // Take up half of the screen height
+    position: "absolute",
+    bottom: 0, // Align to the bottom of the screen
+  },
+  modalTitle: {
+    fontSize: 20,
+    fontWeight: "bold",
+    marginBottom: 10,
+  },
+  modalLocation: {
+    fontSize: 16,
+    marginBottom: 10,
+  },
+  modalTime: {
+    fontSize: 16,
+    marginBottom: 10,
+  },
+  modalDescription: {
+    fontSize: 14,
+    marginBottom: 20,
+  },
+  buttonClose: {
+    padding: 10,
+    elevation: 2,
+    backgroundColor: "#2196F3",
+    alignSelf: "flex-start", // Align the button to the left
+  },
+  textStyle: {
+    color: "white",
+    fontWeight: "bold",
+    textAlign: "center",
   },
 });
 

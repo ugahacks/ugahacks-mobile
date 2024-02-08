@@ -79,7 +79,9 @@ export function Friday({ schedule }) {
             />
           ))
         ) : (
-          <View></View>
+          <View>
+            <Text>No Items Available! Are you connected to the internet?</Text>
+          </View>
         )}
       </View>
     </ScrollView>
@@ -139,7 +141,9 @@ export function Sunday({ schedule }) {
             />
           ))
         ) : (
-          <View></View>
+          <View>
+            <Text>No Items Available! Are you connected to the internet?</Text>
+          </View>
         )}
       </View>
     </ScrollView>
