@@ -120,6 +120,206 @@
                 "name": "Women in CS Hot Ones",
                 "startTime": "1707588000",
                 "tag": "side_event"
+            },
+            "22": {
+                "description": "Engage in a vibrant discussion on Red Orange Pop Art Comic Background.",
+                "endTime": "1707595200",
+                "location": "MLC 214",
+                "name": "Red Orange Pop Art Comic Background",
+                "startTime": "1707591600",
+                "tag": "side_event"
+            },
+            "23": {
+                "description": "Dive into the world of comics with the Yellow Comic Background event.",
+                "endTime": "1707602400",
+                "location": "MLC 142",
+                "name": "Yellow Comic Background",
+                "startTime": "1707591600",
+                "tag": "side_event"
+            },
+            "24": {
+                "description": "Explore the Blue Comic Background in this creative session.",
+                "endTime": "1707595200",
+                "location": "ONLINE",
+                "name": "Blue Comic Background",
+                "startTime": "1707591600",
+                "tag": "side_event"
+            },
+            "25": {
+                "description": "Learn about building frontend applications with State Farm.",
+                "endTime": "1707602400",
+                "location": "ONLINE",
+                "name": "State Farm: Building Frontend Application",
+                "startTime": "1707595200",
+                "tag": "tech_talk"
+            },
+            "26": {
+                "description": "Test your hacking skills in the SCS: Capture the Flag event.",
+                "endTime": "1707606000",
+                "location": "MLC 214",
+                "name": "SCS: Capture the Flag",
+                "startTime": "1707598800",
+                "tag": "side_event"
+            },
+            "27": {
+                "description": "Join the spicy challenge with HPCC Systems Hot Ones.",
+                "endTime": "1707606000",
+                "location": "MLC 348",
+                "name": "HPCC Systems Hot Ones",
+                "startTime": "1707598800",
+                "tag": "side_event"
+            },
+            "28": {
+                "description": "Discuss the future of AI over spicy wings in the AI Futures Hot Ones event.",
+                "endTime": "1707606000",
+                "location": "MLC 350",
+                "name": "AI Futures Hot Ones",
+                "startTime": "1707598800",
+                "tag": "side_event"
+            },
+            "29": {
+                "description": "Get financial tips for college life from State Farm experts.",
+                "endTime": "1707609600",
+                "location": "ONLINE",
+                "name": "State Farm: Tips for Broke College Devs",
+                "startTime": "1707606000",
+                "tag": "workshop"
+            },
+            "30": {
+                "description": "Dive into mobile development in this focused session.",
+                "endTime": "1707609600",
+                "location": "MLC 148",
+                "name": "Mobile Dev",
+                "startTime": "1707606000",
+                "tag": "tech_talk"
+            },
+            "31": {
+                "description": "Stack cups and have fun with MLH in the Cup Stacking workshop.",
+                "endTime": "1707609600",
+                "location": "MLC 250",
+                "name": "MLH: Cup Stacking",
+                "startTime": "1707606000",
+                "tag": "workshop"
+            },
+            "32": {
+                "description": "Join the School of Computing for a fiery Hot Ones challenge.",
+                "endTime": "1707609600",
+                "location": "MLC 171",
+                "name": "School of Computing Hot Ones",
+                "startTime": "1707606000",
+                "tag": "side_event"
+            },
+            "33": {
+                "description": "Explore career opportunities beyond hackathons with ACM/ACM-W.",
+                "endTime": "1707613200",
+                "location": "MLC 214",
+                "name": "ACM/ACM-W: Beyond the Hackathon",
+                "startTime": "1707609600",
+                "tag": "workshop"
+            },
+            "34": {
+                "description": "Enhance your professional skills in the Professional Development session.",
+                "endTime": "1707613200",
+                "location": "MLC 102",
+                "name": "Professional Development",
+                "startTime": "1707609600",
+                "tag": "workshop"
+            },
+            "35": {
+                "description": "Compete in the Smash Tourney for gaming glory.",
+                "endTime": "1707620400",
+                "location": "MLC 142",
+                "name": "Smash Tourney",
+                "startTime": "1707613200",
+                "tag": "side_event"
+            },
+            "36": {
+                "description": "Learn about reverse engineering controllers in the AI Futures workshop.",
+                "endTime": "1707616800",
+                "location": "2nd Floor",
+                "name": "AI Futures: Reverse Engineering Controller",
+                "startTime": "1707613200",
+                "tag": "workshop"
+            },
+            "37": {
+                "description": "Get insights from the Director of SoC in an exclusive interview.",
+                "endTime": "1707616800",
+                "location": "3rd Floor",
+                "name": "Director of SoC Interview",
+                "startTime": "1707613200",
+                "tag": "tech_talk"
+            },
+            "38": {
+                "description": "Meet the team behind the event and network with peers.",
+                "endTime": "1707620400",
+                "location": "MLC 171",
+                "name": "Meet the Team",
+                "startTime": "1707616800",
+                "tag": "side_event"
+            },
+            "39": {
+                "description": "Enjoy a delicious dinner served on the 2nd Floor.",
+                "endTime": "1707624000",
+                "location": "MLC 250",
+                "name": "Dinner",
+                "startTime": "1707620400",
+                "tag": "meal"
+            },
+            "40": {
+                "description": "Engage in an action-packed Dart Blaster event.",
+                "endTime": "1707631200",
+                "location": "2nd Floor",
+                "name": "Dart Blaster",
+                "startTime": "1707627600",
+                "tag": "side_event"
+            },
+            "41": {
+                "description": "Battle it out in the second round of the Smash Tourney.",
+                "endTime": "1707631200",
+                "location": "MLC 171",
+                "name": "Smash Tourney",
+                "startTime": "1707627600",
+                "tag": "side_event"
+            },
+            "42": {
+                "description": "Sing your heart out at the Karaoke event.",
+                "endTime": "1707634800",
+                "location": "MLC 250",
+                "name": "Karaoke",
+                "startTime": "1707631200",
+                "tag": "side_event"
+            },
+            "43": {
+                "description": "Submit your projects by the deadline on Devpost.",
+                "endTime": "1707652800",
+                "location": "Devpost",
+                "name": "Submission Deadline",
+                "startTime": "1707652800",
+                "tag": "alert"
+            },
+            "44": {
+                "description": "Start your Sunday with a nutritious breakfast on the 2nd Floor.",
+                "endTime": "1707659400",
+                "location": "2nd Floor",
+                "name": "Breakfast",
+                "startTime": "1707656400",
+                "tag": "meal"
+            },
+            "45": {
+                "description": "Showcase your projects at the Judging Expo on the 3rd Floor.",
+                "endTime": "1707670200",
+                "location": "3rd Floor",
+                "name": "Judging Expo",
+                "startTime": "1707663600",
+                "tag": "side_event"
+            },
+            "46": {
+                "description": "Celebrate the achievements and wrap up the event at the Closing Ceremony.",
+                "endTime": "1707681000",
+                "location": "MLC 101",
+                "name": "Closing Ceremony",
+                "startTime": "1707677400",
+                "tag": "alert"
             }
         }
     }
