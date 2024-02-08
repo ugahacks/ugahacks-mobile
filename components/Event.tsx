@@ -87,19 +87,22 @@ export const Event: React.FC<EventProps> = ({
         <TouchableWithoutFeedback onPress={toggleModal}>
           <View style={styles.modalOverlay}>
             <TouchableWithoutFeedback onPress={toggleModal}>
-              <View style={styles.modalView}>
-                <Text style={styles.modalTitle}>{name}</Text>
-                <Text style={styles.modalLocation}>{location}</Text>
-                <Text style={styles.modalTime}>
-                  {formattedStartTime} - {formattedEndTime}
-                </Text>
-                <Text style={styles.modalDescription}>{description}</Text>
-                <TouchableOpacity
-                  style={styles.buttonClose}
-                  onPress={toggleModal}
+              <View style={[styles.container, styles.modalView]}>
+                <View
+                  style={[
+                    styles.cardHeader,
+                    { backgroundColor: cardHeaderColor },
+                  ]}
                 >
-                  <Text style={styles.textStyle}>Close</Text>
-                </TouchableOpacity>
+                  <Text style={styles.title}>{name}</Text>
+                </View>
+                <View style={styles.cardBody}>
+                  <Text style={styles.location}>{location}</Text>
+                  <Text style={styles.time}>
+                    {formattedStartTime} - {formattedEndTime}
+                  </Text>
+                  <Text style={styles.modalDescription}>{description}</Text>
+                </View>
               </View>
             </TouchableWithoutFeedback>
           </View>
@@ -177,13 +180,9 @@ const styles = StyleSheet.create({
   },
   modalOverlay: {
     flex: 1,
-    justifyContent: "flex-end", // Align the modal content to the bottom
-    backgroundColor: "rgba(0, 0, 0, 0.5)", // Semi-transparent background
-  },
-  modalContentContainer: {
-    backgroundColor: "white",
-    padding: 20,
-    alignItems: "flex-start", // Align items to the left
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "rgba(0, 0, 0, 0)", // Semi-transparent background
   },
   modalView: {
     backgroundColor: "white",
