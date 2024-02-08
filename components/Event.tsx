@@ -29,16 +29,16 @@ export const Event: React.FC<EventProps> = ({
   const tintColor = useThemeColor({}, "tint");
   const getCardHeaderColor = (eventType: EventType) => {
     switch (eventType) {
-      case "alert":
+      case "alert": //deadlines
         return "#FF6C6C";
       case "meal":
         return "#FFB36C";
-      case "tech_talk":
-        return "#6C95FF";
-      case "side_event":
-        return "#D06CFF";
       case "workshop":
-        return "#6BD15A";
+        return "#6BD15A"; //point low
+      case "tech_talk":
+        return "#6C95FF"; //point medium
+      case "side_event":
+        return "#D06CFF"; //point high
       default:
         return "#FF6C6C";
     }
