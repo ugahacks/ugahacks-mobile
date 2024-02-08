@@ -1,0 +1,178 @@
+{
+    "17": {
+        "startTime": "1707588000",
+        "description": "Explore your artistic side with a paint workshop, a creative outlet for when you need a break from coding.",
+        "tag": "workshop",
+        "endTime": "1707591600",
+        "location": "MLC 213",
+        "name": "Paint Workshop Opens"
+    },
+    "10": {
+        "startTime": "1707577200",
+        "description": "Take a break from coding with a relaxing yoga session, perfect for clearing your mind and stretching your muscles.",
+        "tag": "side_event",
+        "endTime": "1707580800",
+        "location": "MLC 102",
+        "name": "Yoga"
+    },
+    "16": {
+        "startTime": "1707588000",
+        "description": "Unwind and relax in the Chill Space, a perfect spot to take a break from the hackathon hustle.",
+        "tag": "side_event",
+        "endTime": "1707591600",
+        "location": "MLC 207",
+        "name": "Chill Space Opens"
+    },
+    "6": {
+        "startTime": "1707535800",
+        "description": "Introduction to the State Farm sponsored challenge, detailing the objectives, expectations, and potential rewards for participants.",
+        "tag": "tech_talk",
+        "endTime": "1707539400",
+        "location": "MLC 214",
+        "name": "State Farm Challenge Intro"
+    },
+    "5": {
+        "startTime": "1707532200",
+        "description": "A hands-on workshop focused on API integration and best practices for developers.",
+        "tag": "workshop",
+        "endTime": "1707535800",
+        "location": "MLC 250",
+        "name": "API Workshop"
+    },
+    "15": {
+        "startTime": "1707584400",
+        "description": "Enjoy a midday meal and recharge for the afternoon's activities with lunch on the 2nd Floor.",
+        "tag": "meal",
+        "endTime": "1707588000",
+        "location": "2nd Floor",
+        "name": "Lunch"
+    },
+    "18": {
+        "startTime": "1707588000",
+        "description": "Discover the future of AI and learn how to extract memories from an Xbox in this forward-thinking tech talk.",
+        "tag": "tech_talk",
+        "endTime": "1707591600",
+        "location": "MLC 250",
+        "name": "AI Futures: Pulling Memory from Xbox"
+    },
+    "19": {
+        "startTime": "1707588000",
+        "description": "Dive into web development in this session that covers the latest trends and technologies in creating web applications.",
+        "tag": "tech_talk",
+        "endTime": "1707591600",
+        "location": "MLC 348",
+        "name": "Web Dev"
+    },
+    "11": {
+        "startTime": "1707577200",
+        "description": "Compete with fellow hackers or just have fun playing Mario Kart 8 in this casual gaming side event.",
+        "tag": "side_event",
+        "endTime": "1707584400",
+        "location": "MLC 171",
+        "name": "Mario Kart 8"
+    },
+    "13": {
+        "startTime": "1707580800",
+        "description": "Gain insights into what it's like to work at a FAANG company in this informative tech talk.",
+        "tag": "tech_talk",
+        "endTime": "1707584400",
+        "location": "MLC 148",
+        "name": "Life at FAANG"
+    },
+    "0": {
+        "startTime": "1707516000",
+        "description": "Arrive and register for the event at the designated check-in area on the 1st Floor.",
+        "tag": "alert",
+        "endTime": "1707519600",
+        "location": "1st Floor",
+        "name": "Check-In"
+    },
+    "7": {
+        "startTime": "1707570000",
+        "description": "Start your day with a nutritious breakfast served on the 2nd Floor to fuel your creativity.",
+        "tag": "meal",
+        "endTime": "1707573600",
+        "location": "2nd Floor",
+        "name": "Breakfast"
+    },
+    "9": {
+        "startTime": "1707577200",
+        "description": "Overview of the HPCC Systems sponsored challenge, outlining what's at stake and how to compete.",
+        "tag": "tech_talk",
+        "endTime": "1707580800",
+        "location": "MLC 214",
+        "name": "HPCC Systems Challenge Overview"
+    },
+    "1": {
+        "startTime": "1707519600",
+        "description": "Kick off the hackathon with our opening ceremony at 6:00 PM EST in MLC 101, featuring a welcome speech, event schedule overview, expectations, sponsor introductions, and challenge briefings to get everyone pumped for a weekend of innovation.",
+        "tag": "alert",
+        "endTime": "1707523200",
+        "location": "MLC 101",
+        "name": "Opening Ceremony"
+    },
+    "2": {
+        "startTime": "1707525000",
+        "description": "Satisfy your hunger with a delicious assortment of sandwiches and refreshments available on the 2nd Floor.",
+        "tag": "meal",
+        "endTime": "1707526800",
+        "location": "2nd Floor",
+        "name": "Dinner"
+    },
+    "14": {
+        "startTime": "1707580800",
+        "description": "Deep dive into database technologies and learn how to effectively manage data in your applications.",
+        "tag": "workshop",
+        "endTime": "1707584400",
+        "location": "MLC 250",
+        "name": "Databases Workshop"
+    },
+    "8": {
+        "startTime": "1707573600",
+        "description": "Learn the ins and outs of version control with Git in this practical workshop, essential for any collaborative coding project.",
+        "tag": "workshop",
+        "endTime": "1707577200",
+        "location": "MLC 142",
+        "name": "Git Workshop"
+    },
+    "3": {
+        "startTime": "1707528600",
+        "description": "A dedicated session for newcomers to hacking, providing guidance and tips to help first-time hackers navigate the event successfully.",
+        "tag": "workshop",
+        "endTime": "1707532200",
+        "location": "MLC 102",
+        "name": "First Time Hackers"
+    },
+    "4": {
+        "startTime": "1707532200",
+        "description": "An in-depth technical presentation by HPCC Systems, offering insights into their technology and tools.",
+        "tag": "tech_talk",
+        "endTime": "1707535800",
+        "location": "MLC 213",
+        "name": "HPCC Systems Tech Overview"
+    },
+    "12": {
+        "startTime": "1707580800",
+        "description": "An introductory workshop on UI/UX design principles, aimed at enhancing user interface and experience in your projects.",
+        "tag": "workshop",
+        "endTime": "1707584400",
+        "location": "MLC 348",
+        "name": "UI/UX Intro"
+    },
+    "20": {
+        "startTime": "1707588000",
+        "description": "Join MLH for a workshop on Soroban, their latest tech offering, and learn how it can enhance your hacking experience.",
+        "tag": "workshop",
+        "endTime": "1707591600",
+        "location": "MLC 350",
+        "name": "MLH: Soroban"
+    },
+    "21": {
+        "startTime": "1707588000",
+        "description": "Experience a fiery discussion with Women in CS while tackling spicy wings in this unique and hot side event.",
+        "tag": "side_event",
+        "endTime": "1707591600",
+        "location": "MLC 214",
+        "name": "Women in CS Hot Ones"
+    }
+}

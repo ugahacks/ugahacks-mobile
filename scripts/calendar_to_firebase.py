@@ -24,6 +24,24 @@ def upload_file(events):
         events_ref.update({str(event_id): event})
     print(f"Uploaded {len(events)} events to Firestore")
 
+def export_firebase():
+    collection_name = prompt('Enter collection name: ')
+    docs = db.collection(collection_name).stream()
+    doc_ids = [doc.id for doc in docs]
+    if not doc_ids:
+        print("No documents in collection.")
+        return
+    doc_completer = WordCompleter(doc_ids, ignore_case=True)
+    doc_id = prompt('Select a document: ', completer=doc_completer)
+    doc = db.collection(collection_name).document(doc_id).get()
+    if doc.exists:
+        doc_dict = doc.to_dict()
+        with open(f'./export_{collection_name}_{doc_id}.json', 'w') as f:
+            json.dump(doc_dict, f)
+        print(f"Document exported to ./export_{collection_name}_{doc_id}.json")
+    else:
+        print("Document does not exist.")
+
 def view_collection():
     collection_name = prompt('Enter collection name: ')
     docs = db.collection(collection_name).stream()
@@ -45,7 +63,7 @@ def view_collection():
 
 def main():
     while True:
-        action = prompt('Enter action (import, upload, view, exit): ')
+        action = prompt('Enter action (import, upload, view, export, exit): ')
         if action == 'import':
             events = import_file()
         elif action == 'upload':
@@ -55,6 +73,8 @@ def main():
                 print("No events to upload. Import a file first.")
         elif action == 'view':
             view_collection()
+        elif action == 'export':
+            export_firebase()
         elif action == 'exit':
             break
         else:
