@@ -90,7 +90,7 @@ export const Event: React.FC<EventProps> = ({
               <View style={[styles.container, styles.modalView]}>
                 <View
                   style={[
-                    styles.cardHeader,
+                    styles.modalHeader,
                     { backgroundColor: cardHeaderColor },
                   ]}
                 >
@@ -138,6 +138,18 @@ const styles = StyleSheet.create({
     // padding: 8,
     paddingHorizontal: 8,
     paddingVertical: 5,
+  },
+  modalHeader: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+    backgroundColor: "#FF6C6C",
+    borderTopLeftRadius: 8,
+    borderTopRightRadius: 8,
+    // padding: 8,
+    paddingHorizontal: 8,
+    paddingVertical: 5,
+    width: "100%",
   },
   title: {
     fontFamily: "SpaceMonoBold",
