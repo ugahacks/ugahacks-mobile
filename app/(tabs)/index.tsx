@@ -6,15 +6,8 @@ import React from "react";
 import { useEffect } from "react";
 
 export default function Home() {
-  const {
-    user,
-    userInfo,
-    getPoints,
-    changedPoints,
-    setChangedPoints,
-    points,
-    userRegInfo,
-  } = useAuth();
+  const { user, userInfo, getPoints, changedPoints, setChangedPoints, points } =
+    useAuth();
 
   const handleLogin = () => {
     router.replace("/");

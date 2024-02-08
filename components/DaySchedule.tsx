@@ -80,7 +80,10 @@ export function Friday({ schedule }) {
           ))
         ) : (
           <View>
-            <Text>No Items Available! Are you connected to the internet?</Text>
+            <Text>
+              {" "}
+              Calendar isn't available! Are you connected to the internet?
+            </Text>
           </View>
         )}
       </View>
