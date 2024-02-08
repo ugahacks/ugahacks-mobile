@@ -1,4 +1,4 @@
-import { StyleSheet } from "react-native";
+import { ScrollView, StyleSheet, Text } from "react-native";
 import { View, useThemeColor } from "./Themed";
 import { Event, EventProps } from "./Event";
 import React from "react";
@@ -64,14 +64,14 @@ export function Friday({ schedule }) {
     return eventDate.getDay() === 5; // Check if the day is Friday (5)
   });
   return (
-    <View style={styles.container}>
+    <ScrollView contentContainerStyle={styles.container}>
       <View style={styles.scheduleContainer}>
         {fridayEvents.length > 0 ? (
           fridayEvents.map((event: EventProps, index: number) => (
             <Event
               key={index} // Ideally, use a unique identifier from the event object
-              title={event.title}
-              type={event.type}
+              name={event.name}
+              tag={event.tag}
               description={event.description}
               location={event.location}
               startTime={event.startTime}
@@ -82,25 +82,25 @@ export function Friday({ schedule }) {
           <View></View>
         )}
       </View>
-    </View>
+    </ScrollView>
   );
 }
 
 export function Saturday({ schedule }) {
   // Filter events to only include those that occur on this day
-  const fridayEvents = schedule.filter((event: EventProps) => {
+  const saturdayEvents = schedule.filter((event: EventProps) => {
     const eventDate = new Date(event.startTime * 1000); // Convert Unix timestamp to milliseconds
-    return eventDate.getDay() === 6; // Check if the day is Friday (5)
+    return eventDate.getDay() === 6; // Check if the day is saturday (5)
   });
   return (
-    <View style={styles.container}>
+    <ScrollView contentContainerStyle={styles.container}>
       <View style={styles.scheduleContainer}>
-        {fridayEvents.length > 0 ? (
-          fridayEvents.map((event: EventProps, index: number) => (
+        {saturdayEvents.length > 0 ? (
+          saturdayEvents.map((event: EventProps, index: number) => (
             <Event
               key={index} // Ideally, use a unique identifier from the event object
-              title={event.title}
-              type={event.type}
+              name={event.name}
+              tag={event.tag}
               description={event.description}
               location={event.location}
               startTime={event.startTime}
@@ -108,28 +108,30 @@ export function Saturday({ schedule }) {
             />
           ))
         ) : (
-          <View></View>
+          <View>
+            <Text>No Items Available! Are you connected to the internet?</Text>
+          </View>
         )}
       </View>
-    </View>
+    </ScrollView>
   );
 }
 
 export function Sunday({ schedule }) {
   // Filter events to only include those that occur on this day
-  const fridayEvents = schedule.filter((event: EventProps) => {
+  const sundayEvents = schedule.filter((event: EventProps) => {
     const eventDate = new Date(event.startTime * 1000); // Convert Unix timestamp to milliseconds
-    return eventDate.getDay() === 0; // Check if the day is Friday (5)
+    return eventDate.getDay() === 0; // Check if the day is sunday (5)
   });
   return (
-    <View style={styles.container}>
+    <ScrollView contentContainerStyle={styles.container}>
       <View style={styles.scheduleContainer}>
-        {fridayEvents.length > 0 ? (
-          fridayEvents.map((event: EventProps, index: number) => (
+        {sundayEvents.length > 0 ? (
+          sundayEvents.map((event: EventProps, index: number) => (
             <Event
               key={index} // Ideally, use a unique identifier from the event object
-              title={event.title}
-              type={event.type}
+              name={event.name}
+              tag={event.tag}
               description={event.description}
               location={event.location}
               startTime={event.startTime}
@@ -140,7 +142,7 @@ export function Sunday({ schedule }) {
           <View></View>
         )}
       </View>
-    </View>
+    </ScrollView>
   );
 }
 
@@ -173,9 +175,11 @@ const styles = StyleSheet.create({
     backgroundColor: "#4478FD",
   },
   scheduleContainer: {
-    marginTop: 40,
+    marginTop: 0,
+    paddingTop: 20,
     width: "100%",
     alignItems: "flex-start",
+    height: "100%",
   },
   sidebar: {
     flexDirection: "row",
