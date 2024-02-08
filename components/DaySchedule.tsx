@@ -90,7 +90,7 @@ export function Saturday({ schedule }) {
   // Filter events to only include those that occur on this day
   const fridayEvents = schedule.filter((event: EventProps) => {
     const eventDate = new Date(event.startTime * 1000); // Convert Unix timestamp to milliseconds
-    return eventDate.getDay() === 5; // Check if the day is Friday (5)
+    return eventDate.getDay() === 6; // Check if the day is Friday (5)
   });
   return (
     <View style={styles.container}>
@@ -119,7 +119,7 @@ export function Sunday({ schedule }) {
   // Filter events to only include those that occur on this day
   const fridayEvents = schedule.filter((event: EventProps) => {
     const eventDate = new Date(event.startTime * 1000); // Convert Unix timestamp to milliseconds
-    return eventDate.getDay() === 5; // Check if the day is Friday (5)
+    return eventDate.getDay() === 0; // Check if the day is Friday (5)
   });
   return (
     <View style={styles.container}>

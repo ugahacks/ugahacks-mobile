@@ -21,9 +21,7 @@ export default function Schedule() {
       setSortedSchedule(scheduleTotal);
     }
   }, [scheduleTotal]);
-  useEffect(() => {
-    console.log("Sorted schedule", sortedSchedule);
-  }, [sortedSchedule]);
+  useEffect(() => {}, [sortedSchedule]);
 
   return (
     <NavigationContainer independent={true}>

@@ -653,6 +653,7 @@ export const AuthContextProvider = ({
         setMyScheduleSaturday,
         setMyScheduleSunday,
         getSchedule,
+        scheduleTotal,
         changedFriday,
         setChangedFriday,
         changedSaturday,
