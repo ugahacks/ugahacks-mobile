@@ -288,38 +288,6 @@
                 "name": "Karaoke",
                 "startTime": "1707631200",
                 "tag": "side_event"
-            },
-            "43": {
-                "description": "Submit your projects by the deadline on Devpost.",
-                "endTime": "1707652800",
-                "location": "Devpost",
-                "name": "Submission Deadline",
-                "startTime": "1707652800",
-                "tag": "alert"
-            },
-            "44": {
-                "description": "Start your Sunday with a nutritious breakfast on the 2nd Floor.",
-                "endTime": "1707659400",
-                "location": "2nd Floor",
-                "name": "Breakfast",
-                "startTime": "1707656400",
-                "tag": "meal"
-            },
-            "45": {
-                "description": "Showcase your projects at the Judging Expo on the 3rd Floor.",
-                "endTime": "1707670200",
-                "location": "3rd Floor",
-                "name": "Judging Expo",
-                "startTime": "1707663600",
-                "tag": "side_event"
-            },
-            "46": {
-                "description": "Celebrate the achievements and wrap up the event at the Closing Ceremony.",
-                "endTime": "1707681000",
-                "location": "MLC 101",
-                "name": "Closing Ceremony",
-                "startTime": "1707677400",
-                "tag": "alert"
             }
         }
     }
