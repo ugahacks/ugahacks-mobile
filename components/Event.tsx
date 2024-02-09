@@ -57,7 +57,11 @@ export const Event: React.FC<EventProps> = ({
     <>
       <TouchableOpacity
         onPress={toggleModal}
-        style={[styles.sidebar, { borderColor: tintColor }]}
+        style={[
+          styles.sidebar,
+          { borderColor: tintColor },
+          { backgroundColor: tintColor },
+        ]}
       >
         {/* ... (rest of your existing event item code) */}
         <View style={[styles.sidebar, { borderColor: tintColor }]}>
@@ -69,7 +73,7 @@ export const Event: React.FC<EventProps> = ({
             >
               <Text style={styles.title}>{name}</Text>
             </View>
-            <View style={styles.cardBody}>
+            <View style={[styles.cardBody, { backgroundColor: tintColor }]}>
               <Text style={styles.location}>{location}</Text>
               <Text style={styles.time}>
                 {formattedStartTime} - {formattedEndTime}
@@ -83,6 +87,7 @@ export const Event: React.FC<EventProps> = ({
         transparent={true}
         visible={modalVisible}
         onRequestClose={toggleModal}
+        style={[styles.cardBody, { backgroundColor: tintColor }]}
       >
         <TouchableWithoutFeedback onPress={toggleModal}>
           <View style={styles.modalOverlay}>
@@ -96,7 +101,7 @@ export const Event: React.FC<EventProps> = ({
                 >
                   <Text style={styles.title}>{name}</Text>
                 </View>
-                <View style={styles.cardBody}>
+                <View style={[styles.cardBody, { backgroundColor: tintColor }]}>
                   <Text style={styles.location}>{location}</Text>
                   <Text style={styles.time}>
                     {formattedStartTime} - {formattedEndTime}

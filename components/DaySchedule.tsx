@@ -1,17 +1,20 @@
-import { ScrollView, StyleSheet, Text } from "react-native";
-import { View } from "./Themed";
+import { StyleSheet, Text } from "react-native";
+import { ScrollView, View, useThemeColor } from "./Themed";
 import { Event, EventProps } from "./Event";
 import React from "react";
 
 export function Friday({ schedule }) {
+  const tintColor = useThemeColor({}, "tint");
+  const backgroundColor = useThemeColor({}, "background");
+  const textColor = useThemeColor({}, "text");
   // Filter events to only include those that occur on this day
   const fridayEvents = schedule.filter((event: EventProps) => {
     const eventDate = new Date(event.startTime * 1000); // Convert Unix timestamp to milliseconds
     return eventDate.getDay() === 5; // Check if the day is Friday (5)
   });
   return (
-    <ScrollView contentContainerStyle={styles.container}>
-      <View style={styles.scheduleContainer}>
+    <ScrollView style={[styles.container, { backgroundColor: }]}>
+      <View style={[styles.scheduleContainer, { backgroundColor: tintColor }]}>
         {fridayEvents.length > 0 ? (
           fridayEvents.map((event: EventProps, index: number) => (
             <Event
@@ -44,7 +47,7 @@ export function Saturday({ schedule }) {
     return eventDate.getDay() === 6; // Check if the day is saturday (5)
   });
   return (
-    <ScrollView contentContainerStyle={styles.container}>
+    <ScrollView style={styles.container}>
       <View style={styles.scheduleContainer}>
         {saturdayEvents.length > 0 ? (
           saturdayEvents.map((event: EventProps, index: number) => (
@@ -75,7 +78,7 @@ export function Sunday({ schedule }) {
     return eventDate.getDay() === 0; // Check if the day is sunday (5)
   });
   return (
-    <ScrollView contentContainerStyle={styles.container}>
+    <ScrollView style={styles.container}>
       <View style={styles.scheduleContainer}>
         {sundayEvents.length > 0 ? (
           sundayEvents.map((event: EventProps, index: number) => (
