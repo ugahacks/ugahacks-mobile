@@ -55,14 +55,7 @@ export const Event: React.FC<EventProps> = ({
 
   return (
     <>
-      <TouchableOpacity
-        onPress={toggleModal}
-        style={[
-          styles.sidebar,
-          { borderColor: tintColor },
-          { backgroundColor: tintColor },
-        ]}
-      >
+      <TouchableOpacity onPress={toggleModal} style={[styles.sidebar]}>
         {/* ... (rest of your existing event item code) */}
         <View style={[styles.sidebar, { borderColor: tintColor }]}>
           <View style={[styles.verticalLine, { backgroundColor: tintColor }]} />
@@ -73,7 +66,7 @@ export const Event: React.FC<EventProps> = ({
             >
               <Text style={styles.title}>{name}</Text>
             </View>
-            <View style={[styles.cardBody, { backgroundColor: tintColor }]}>
+            <View style={[styles.cardBody]}>
               <Text style={styles.location}>{location}</Text>
               <Text style={styles.time}>
                 {formattedStartTime} - {formattedEndTime}

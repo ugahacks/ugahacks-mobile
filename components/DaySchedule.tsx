@@ -4,7 +4,7 @@ import { Event, EventProps } from "./Event";
 import React from "react";
 
 export function Friday({ schedule }) {
-  const tintColor = useThemeColor({}, "tint");
+  //const tintColor = useThemeColor({}, "tint");
   const backgroundColor = useThemeColor({}, "background");
   const textColor = useThemeColor({}, "text");
   // Filter events to only include those that occur on this day
@@ -13,8 +13,8 @@ export function Friday({ schedule }) {
     return eventDate.getDay() === 5; // Check if the day is Friday (5)
   });
   return (
-    <ScrollView style={[styles.container, { backgroundColor: }]}>
-      <View style={[styles.scheduleContainer, { backgroundColor: tintColor }]}>
+    <ScrollView style={styles.container}>
+      <View style={[styles.scheduleContainer]}>
         {fridayEvents.length > 0 ? (
           fridayEvents.map((event: EventProps, index: number) => (
             <Event

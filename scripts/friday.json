@@ -3,58 +3,58 @@
         "events": {
             "0": {
                 "description": "Arrive and register for the event at the designated check-in area on the 1st Floor.",
-                "endTime": "1707502800",
+                "endTime": "1707519600",
                 "location": "1st Floor",
                 "name": "Check-In",
-                "startTime": "1707499200",
+                "startTime": "1707516000",
                 "tag": "alert"
             },
             "1": {
                 "description": "Kick off the hackathon with our opening ceremony at 6:00 PM EST in MLC 101, featuring a welcome speech, event schedule overview, expectations, sponsor introductions, and challenge briefings to get everyone pumped for a weekend of innovation.",
-                "endTime": "1707506400",
+                "endTime": "1707523200",
                 "location": "MLC 101",
                 "name": "Opening Ceremony",
-                "startTime": "1707502800",
+                "startTime": "1707519600",
                 "tag": "alert"
             },
             "2": {
                 "description": "Satisfy your hunger with a delicious assortment of sandwiches and refreshments available on the 2nd Floor.",
-                "endTime": "1707511800",
+                "endTime": "1707526800",
                 "location": "2nd Floor",
                 "name": "Dinner",
-                "startTime": "1707508200",
+                "startTime": "1707525000",
                 "tag": "meal"
             },
             "3": {
                 "description": "A dedicated session for newcomers to hacking, providing guidance and tips to help first-time hackers navigate the event successfully.",
-                "endTime": "1707517200",
+                "endTime": "1707532200",
                 "location": "MLC 102",
                 "name": "First Time Hackers",
-                "startTime": "1707513600",
+                "startTime": "1707528600",
                 "tag": "workshop"
             },
             "4": {
                 "description": "An in-depth technical presentation by HPCC Systems, offering insights into their technology and tools.",
-                "endTime": "1707520800",
+                "endTime": "1707535800",
                 "location": "MLC 213",
                 "name": "HPCC Systems Tech Overview",
-                "startTime": "1707517200",
+                "startTime": "1707532200",
                 "tag": "tech_talk"
             },
             "5": {
                 "description": "A hands-on workshop focused on API integration and best practices for developers.",
-                "endTime": "1707520800",
+                "endTime": "1707535800",
                 "location": "MLC 250",
                 "name": "API Workshop",
-                "startTime": "1707517200",
+                "startTime": "1707532200",
                 "tag": "workshop"
             },
             "6": {
                 "description": "Introduction to the State Farm sponsored challenge, detailing the objectives, expectations, and potential rewards for participants.",
-                "endTime": "1707524400",
+                "endTime": "1707539400",
                 "location": "MLC 214",
                 "name": "State Farm Challenge Intro",
-                "startTime": "1707520800",
+                "startTime": "1707535800",
                 "tag": "tech_talk"
             }
         }
