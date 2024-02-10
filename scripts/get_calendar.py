@@ -6,6 +6,29 @@ cred = credentials.Certificate('../firebase-adminsdk.json')
 firebase_admin.initialize_app(cred)
 # Get a Firestore client
 db = firestore.client()
+import csv
+
+import csv
+def download_collection_to_csv(collection_name):
+    # Get all documents from the collection
+    docs = db.collection(collection_name).stream()
+    data = []
+    for doc in docs:
+        data.append(doc.to_dict())
+    # Check if there is any data
+    if data:
+        # Open or create a CSV file and write the data into it
+        with open(f'{collection_name}.csv', 'w', newline='') as file:
+            writer = csv.writer(file)
+            writer.writerow(data[0].keys())  # column headers
+            for row in data:
+                writer.writerow(row.values())  # data
+        print(f"Data successfully written to {collection_name}.csv")
+    else:
+        print(f"No documents found in collection: {collection_name}")
+# Usage
+download_collection_to_csv('eSports9-user-registration-details')
+
 def get_schedule():
     try:
         # Get the 'events' document from the 'schedule' collection
@@ -36,5 +59,4 @@ def get_schedule():
     except Exception as error:
         print("Error fetching schedule:", error)
 # Call the function and print the schedule
-schedule = get_schedule()
 
